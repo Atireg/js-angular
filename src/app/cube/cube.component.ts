@@ -1,14 +1,15 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as THREE from 'three';
+import { log } from 'three/webgpu';
 
 @Component({
-  selector: 'app-background',
+  selector: 'app-cube',
   standalone: true,
   imports: [],
-  templateUrl: './background.component.html',
-  styleUrl: './background.component.css'
+  templateUrl: './cube.component.html',
+  styleUrl: './cube.component.css'
 })
-export class BackgroundComponent implements OnInit {
+export class CubeComponent implements OnInit {
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -18,8 +19,6 @@ export class BackgroundComponent implements OnInit {
     width: window.innerWidth,
     height: window.innerHeight
   }
-  private particles!: THREE.Points;
-  private particlesColor!: '#ffeded';
 
   constructor(private el: ElementRef) { }
 
@@ -33,7 +32,7 @@ export class BackgroundComponent implements OnInit {
     this.renderer = new THREE.WebGLRenderer();
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
-    this.el.nativeElement.querySelector('.particles').appendChild(this.renderer.domElement);
+    this.el.nativeElement.querySelector('.cube').appendChild(this.renderer.domElement);
 
 
     // Create a scene
@@ -48,31 +47,7 @@ export class BackgroundComponent implements OnInit {
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     this.cube = new THREE.Mesh(geometry, material);
-    // this.scene.add(this.cube);
-
-    // Particles
-    const particlesCount = 1000
-    const positions = new Float32Array(particlesCount * 3)
-
-    for (let i = 0; i < particlesCount; i++) {
-      positions[i * 3 + 0] = (Math.random() - 0.5) * 100
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 10
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 10
-    }
-
-    const particlesGeometry = new THREE.BufferGeometry()
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
-
-    // Material
-    const particlesMaterial = new THREE.PointsMaterial({
-      color: this.particlesColor,
-      sizeAttenuation: true,
-      size: 0.03
-    })
-
-    // Points
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-    this.scene.add(particles)
+    this.scene.add(this.cube);
 
     // Handle window resize
     window.addEventListener('resize', () => {
