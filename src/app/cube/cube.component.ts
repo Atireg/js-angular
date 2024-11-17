@@ -23,6 +23,7 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeScene();
+    this.resizeCanvas();
     this.startAnimationLoop();
   }
 
@@ -39,10 +40,8 @@ export class CubeComponent implements OnInit, OnDestroy {
 
     this.el.nativeElement.querySelector('.cube').appendChild(this.renderer.domElement);
 
-
     // Create a scene
     this.scene = new THREE.Scene();
-    console.log(this.scene);
 
     // Create a camera
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -53,10 +52,6 @@ export class CubeComponent implements OnInit, OnDestroy {
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
-
-    // Handle window resize
-    window.addEventListener('resize', () => {this.resizeCanvas()})
-
   };
 
   private startAnimationLoop(): void {
@@ -67,17 +62,18 @@ export class CubeComponent implements OnInit, OnDestroy {
   };
 
   private resizeCanvas(): void {
-    // Update sizes
-    this.sizes.width = window.innerWidth;
-    this.sizes.height = window.innerHeight;
+    window.addEventListener('resize', () => {
+      // Update sizes
+      this.sizes.width = window.innerWidth;
+      this.sizes.height = window.innerHeight;
 
-    // Update camera
-    this.camera.aspect = window.innerWidth / window.innerHeight;
-    this.camera.updateProjectionMatrix();
+      // Update camera
+      this.camera.aspect = window.innerWidth / window.innerHeight;
+      this.camera.updateProjectionMatrix();
 
-    //Update renderer
-    this.renderer.setSize(this.sizes.width, this.sizes.height)
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-  };
-
+      //Update renderer
+      this.renderer.setSize(this.sizes.width, this.sizes.height)
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    });
+  }
 }
