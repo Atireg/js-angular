@@ -1,13 +1,13 @@
 import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { BackgroundComponent } from './background/background.component';
 import { ParticlesComponent } from './particles/particles.component';
+import { CubeComponent } from './cube/cube.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, BackgroundComponent, ParticlesComponent],
+  imports: [RouterOutlet, CubeComponent, ParticlesComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

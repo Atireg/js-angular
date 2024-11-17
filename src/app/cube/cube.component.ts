@@ -29,7 +29,9 @@ export class CubeComponent implements OnInit {
 
   private initializeScene(): void {
     // Create a renderer and attach it to the DOM
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true
+    });
     this.renderer.setSize(window.innerWidth, window.innerHeight);
 
     this.el.nativeElement.querySelector('.cube').appendChild(this.renderer.domElement);
@@ -68,8 +70,8 @@ export class CubeComponent implements OnInit {
 
   private startAnimationLoop(): void {
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
+    // this.cube.rotation.x += 0.01;
+    // this.cube.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
   }
 

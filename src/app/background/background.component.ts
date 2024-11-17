@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import * as THREE from 'three';
+import { alphaT } from 'three/webgpu';
+import { CubeComponent } from '../cube/cube.component';
 
 @Component({
   selector: 'app-background',
   standalone: true,
-  imports: [],
+  imports: [CubeComponent],
   templateUrl: './background.component.html',
   styleUrl: './background.component.css'
 })
@@ -30,7 +32,10 @@ export class BackgroundComponent implements OnInit {
 
   private initializeScene(): void {
     // Create a renderer and attach it to the DOM
-    this.renderer = new THREE.WebGLRenderer();
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true
+    })
+  ;
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     this.el.nativeElement.querySelector('.particles').appendChild(this.renderer.domElement);

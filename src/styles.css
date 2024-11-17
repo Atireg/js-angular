@@ -1,4 +1,9 @@
-html
-{
+html {
     background: #111011;
 }
+
+.container {
+    position: relative; /* Container is relatively positioned */
+    width: 100%; /* Adjust to your desired size */
+    height: 100%; /* Adjust to your desired size */
+  }

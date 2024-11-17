@@ -1,10 +1,11 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import * as THREE from 'three';
+import { CubeComponent } from '../cube/cube.component';
 
 @Component({
   selector: 'app-particles',
   standalone: true,
-  imports: [],
+  imports: [CubeComponent],
   templateUrl: './particles.component.html',
   styleUrl: './particles.component.css'
 })
@@ -97,7 +98,7 @@ export class ParticlesComponent implements OnInit, OnDestroy {
 
   private startAnimationLoop(): void {
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    // this.particles.rotation.x += 0.0004;
+    this.particles.rotation.x += 0.0003;
     // this.particles.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
   }
