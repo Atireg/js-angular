@@ -12,7 +12,7 @@ export class BackgroundComponent implements OnInit {
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
-  private cube!: THREE.Mesh;
+  private directionalLight!: THREE.DirectionalLight;
   private animationId!: number;
   private sizes = {
     width: window.innerWidth,
@@ -31,31 +31,29 @@ export class BackgroundComponent implements OnInit {
   private initializeScene(): void {
     // Create a renderer and attach it to the DOM
     this.renderer = new THREE.WebGLRenderer();
+    this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
     this.renderer.setSize(window.innerWidth, window.innerHeight);
-
     this.el.nativeElement.querySelector('.particles').appendChild(this.renderer.domElement);
-
 
     // Create a scene
     this.scene = new THREE.Scene();
-    console.log(this.scene);
 
     // Create a camera
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     this.camera.position.z = 5;
 
-    // Create a cube
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    this.cube = new THREE.Mesh(geometry, material);
-    // this.scene.add(this.cube);
+    // Create lights
+    this.directionalLight = new THREE.DirectionalLight('#ffffff', 1)
+    this.directionalLight.position.set(1, 1, 0)
+
+    this.scene.add(this.directionalLight)
 
     // Particles
     const particlesCount = 1000
     const positions = new Float32Array(particlesCount * 3)
 
     for (let i = 0; i < particlesCount; i++) {
-      positions[i * 3 + 0] = (Math.random() - 0.5) * 100
+      positions[i * 3 + 0] = (Math.random() - 0.5) * 50
       positions[i * 3 + 1] = (Math.random() - 0.5) * 10
       positions[i * 3 + 2] = (Math.random() - 0.5) * 10
     }
@@ -71,8 +69,8 @@ export class BackgroundComponent implements OnInit {
     })
 
     // Points
-    const particles = new THREE.Points(particlesGeometry, particlesMaterial)
-    this.scene.add(particles)
+    this.particles = new THREE.Points(particlesGeometry, particlesMaterial)
+    this.scene.add(this.particles)
 
     // Handle window resize
     window.addEventListener('resize', () => {
@@ -93,8 +91,8 @@ export class BackgroundComponent implements OnInit {
 
   private startAnimationLoop(): void {
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
+    // this.particles.rotation.x += 0.0004;
+    // this.particles.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
   }
 
