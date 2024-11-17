@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import * as THREE from 'three';
-import { log } from 'three/webgpu';
 
 @Component({
   selector: 'app-cube',

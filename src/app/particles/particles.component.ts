@@ -1,11 +1,10 @@
 import { Component, ViewChild, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import * as THREE from 'three';
-import { CubeComponent } from '../cube/cube.component';
 
 @Component({
   selector: 'app-particles',
   standalone: true,
-  imports: [CubeComponent],
+  imports: [],
   templateUrl: './particles.component.html',
   styleUrl: './particles.component.css'
 })
