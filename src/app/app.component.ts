@@ -2,12 +2,13 @@ import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ParticlesComponent } from './particles/particles.component';
 import { CubeComponent } from './cube/cube.component';
+import { GridComponent } from './grid/grid.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, CubeComponent, ParticlesComponent],
+  imports: [RouterOutlet, CubeComponent, ParticlesComponent, GridComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

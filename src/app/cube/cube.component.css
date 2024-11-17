@@ -1,8 +1,7 @@
 .cube {
     display: flex;
     align-items: center;
-    /* height: 100vh; */
-    position: relative;
-
-    /* z-index: 50; */
+    position: fixed;
+    height: 60px;
+    width: 60px;
 }
