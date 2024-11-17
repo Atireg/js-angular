@@ -1,7 +1,12 @@
-.cube {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    height: 60px;
-    width: 60px;
-}
+.grid-item {
+    aspect-ratio: 1; /* Keep items square in shape */
+    background-color: #cf762e8a;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 1.5rem;
+    transition: transform 0.3s;
+    position: relative;
+  }
+
+  

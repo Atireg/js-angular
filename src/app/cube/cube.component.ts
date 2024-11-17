@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import * as THREE from 'three';
 
 @Component({
@@ -9,6 +9,8 @@ import * as THREE from 'three';
   styleUrl: './cube.component.css'
 })
 export class CubeComponent implements OnInit, OnDestroy {
+  @ViewChild('cube', { static: true }) containerRef!: ElementRef;
+
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -18,12 +20,11 @@ export class CubeComponent implements OnInit, OnDestroy {
     width: window.innerWidth,
     height: window.innerHeight
   }
-
-  constructor(private el: ElementRef) { }
+  
+  constructor() { }
 
   ngOnInit(): void {
     this.initializeScene();
-    this.resizeCanvas();
     this.startAnimationLoop();
   }
 
@@ -32,13 +33,30 @@ export class CubeComponent implements OnInit, OnDestroy {
   };
 
   private initializeScene(): void {
+    const gridItemContainer = this.containerRef.nativeElement
+
+    // Input Parameters
+    const parameters = {
+      materialColor: '#ffeded'
+    }
+    // Texture
+    const textureoader = new THREE.TextureLoader()
+    const gradientTexture = textureoader.load('./5.jpg')
+    gradientTexture.magFilter = THREE.NearestFilter
+
+    // Material
+    const material = new THREE.MeshToonMaterial({
+      color: parameters.materialColor,
+      gradientMap: gradientTexture
+    })
+
     // Create a renderer and attach it to the DOM
     this.renderer = new THREE.WebGLRenderer({
       alpha: true
     });
-    this.renderer.setSize(window.innerWidth, window.innerHeight);
-
-    this.el.nativeElement.querySelector('.cube').appendChild(this.renderer.domElement);
+    this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
+    this.renderer.setSize(gridItemContainer.clientWidth, gridItemContainer.clientHeight);
+    gridItemContainer.appendChild(this.renderer.domElement);
 
     // Create a scene
     this.scene = new THREE.Scene();
@@ -49,9 +67,29 @@ export class CubeComponent implements OnInit, OnDestroy {
 
     // Create a cube
     const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x214E34    });
+    // const material = new THREE.MeshBasicMaterial({ color: 0x214E34 });
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
+
+    // Create lights
+    const directionalight = new THREE.DirectionalLight('#ffffff', 1)
+    directionalight.position.set(1, 1, 0)
+    this.scene.add(directionalight)
+
+    // Resize Grid Item
+    gridItemContainer.addEventListener('resize', () => {
+      // Update sizes
+      // gridItemContainer.clientWidth = window.innerWidth;
+      // this.sizes.height = window.innerHeight;
+
+      // Update camera
+      this.camera.aspect = gridItemContainer.clientWidth / gridItemContainer.clientHeight;
+      this.camera.updateProjectionMatrix();
+
+      //Update renderer
+      this.renderer.setSize(gridItemContainer.clientWidth, gridItemContainer.clientHeight)
+      this.renderer.setPixelRatio(Math.min(gridItemContainer.devicePixelRatio, 2))
+    });
   };
 
   private startAnimationLoop(): void {
@@ -60,20 +98,4 @@ export class CubeComponent implements OnInit, OnDestroy {
     this.cube.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
   };
-
-  private resizeCanvas(): void {
-    window.addEventListener('resize', () => {
-      // Update sizes
-      this.sizes.width = window.innerWidth;
-      this.sizes.height = window.innerHeight;
-
-      // Update camera
-      this.camera.aspect = window.innerWidth / window.innerHeight;
-      this.camera.updateProjectionMatrix();
-
-      //Update renderer
-      this.renderer.setSize(this.sizes.width, this.sizes.height)
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    });
-  }
 }
