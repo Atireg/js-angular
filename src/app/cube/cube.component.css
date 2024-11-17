@@ -8,6 +8,6 @@
     position: relative;
 }
 
-/* .grid-item:hover {
-    transform: scale(1.05);
-} */
+.grid-item:hover {
+    background-color: #51ce9a6c;
+}

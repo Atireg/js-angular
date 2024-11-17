@@ -31,18 +31,15 @@ export class CubeComponent implements OnInit, OnDestroy {
   private initializeScene(): void {
     const gridItemContainer = this.containerRef.nativeElement
 
-    const sizes = {
-      width: gridItemContainer.clientWidth,
-      height: gridItemContainer.clientHeight,
-    }
+    
 
     // Input Parameters
     const parameters = {
-      materialColor: '#73d800f8'
+      materialColor: new THREE.Color(0xFCF300)
     }
     // Texture
     const textureoader = new THREE.TextureLoader()
-    const gradientTexture = textureoader.load('./3.jpg')
+    const gradientTexture = textureoader.load('./5.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
     // Material
@@ -50,14 +47,6 @@ export class CubeComponent implements OnInit, OnDestroy {
       color: parameters.materialColor,
       gradientMap: gradientTexture
     })
-
-    // Create a renderer and attach it to the DOM
-    this.renderer = new THREE.WebGLRenderer({
-      alpha: true
-    });
-    this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
-    this.renderer.setSize(sizes.width, sizes.height);
-    gridItemContainer.appendChild(this.renderer.domElement);
 
     // Create a scene
     this.scene = new THREE.Scene();
@@ -68,39 +57,48 @@ export class CubeComponent implements OnInit, OnDestroy {
 
     // Create a cube
     const geometry = new THREE.BoxGeometry();
-    // const material = new THREE.MeshBasicMaterial({ color: 0x214E34 });
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
 
     // Create lights
-    const directionalight = new THREE.DirectionalLight('#ffffff', 1)
+    const directionalight = new THREE.DirectionalLight('#ffffff', 3)
     directionalight.position.set(1, 1, 0)
     this.scene.add(directionalight)
 
+    const sizes = {
+      width: gridItemContainer.clientWidth,
+      height: gridItemContainer.clientHeight,
+    }
+
     // Resize Grid Item
-    // gridItemContainer.addEventListener('resize', () => {
-    //   // Update sizes
+    window.addEventListener('resize', () => {
+      // Update sizes
       
-    //   sizes.width = gridItemContainer.clientHeight;
-    //   sizes.height = gridItemContainer.clientHeight;
+      sizes.width = gridItemContainer.clientWidth;
 
-    //   console.log(sizes.width, sizes.height );
+      // Update camera
+      this.camera.aspect = 1;
+      this.camera.updateProjectionMatrix();
 
+      //Update renderer
+      this.renderer.setSize(sizes.width, sizes.width)
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    });
 
-    //   // Update camera
-    //   this.camera.aspect = sizes.width / sizes.height;
-    //   this.camera.updateProjectionMatrix();
-
-    //   //Update renderer
-    //   this.renderer.setSize(sizes.width, sizes.height)
-    //   this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
-    // });
+    // Create a renderer and attach it to the DOM
+    this.renderer = new THREE.WebGLRenderer({
+      alpha: true
+    });
+    this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
+    this.renderer.setSize(sizes.width, sizes.height);
+    gridItemContainer.appendChild(this.renderer.domElement);
   };
 
   private startAnimationLoop(): void {
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.01;
+    this.cube.rotation.x += 0.005;
+    this.cube.rotation.y += 0.005;
+    this.cube.rotation.z += 0.005;
     this.renderer.render(this.scene, this.camera);
   };
 }
