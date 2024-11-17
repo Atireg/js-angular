@@ -3,12 +3,13 @@ import { RouterOutlet } from '@angular/router';
 import { ParticlesComponent } from './particles/particles.component';
 import { GridComponent } from './grid/grid.component';
 import { HeaderComponent } from './core/header/header.component';
+import { FooterComponent } from './core/footer/footer.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ParticlesComponent, GridComponent, HeaderComponent],
+  imports: [RouterOutlet, ParticlesComponent, GridComponent, HeaderComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

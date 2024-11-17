@@ -28,11 +28,12 @@ export class ParticlesComponent implements OnInit, OnDestroy {
   };
   private clock!: THREE.Clock;
   private previousTime!: number;
-  
+
   constructor() { }
 
   ngOnInit(): void {
     this.initializeScene();
+
     this.resizeCanvas();
     this.cursor = {
       x: 0,
@@ -41,7 +42,6 @@ export class ParticlesComponent implements OnInit, OnDestroy {
 
     this.clock = new THREE.Clock();
     this.previousTime = 0;
-
     this.startAnimationLoop();
   }
 
@@ -125,13 +125,13 @@ export class ParticlesComponent implements OnInit, OnDestroy {
     const elapsedTime = this.clock.getElapsedTime()
     const deltaTime = elapsedTime - this.previousTime
     this.previousTime = elapsedTime;
-    
+
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
     this.camera.position.x += (this.cursor.x - this.camera.position.x) * 5 * deltaTime;
     this.camera.position.y += (this.cursor.y - this.camera.position.y) * 5 * deltaTime;
 
     // console.log(this.camera.position.x, this.camera.position.y);
-    
+
 
     this.particles.rotation.x += 0.0003;
     // this.particles.rotation.y += 0.01;

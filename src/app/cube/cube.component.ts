@@ -90,7 +90,7 @@ export class CubeComponent implements OnInit, OnDestroy {
       alpha: true
     });
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
-    this.renderer.setSize(sizes.width, sizes.height);
+    this.renderer.setSize(sizes.width, sizes.width);
     gridItemContainer.appendChild(this.renderer.domElement);
   };
 
