@@ -34,6 +34,7 @@ export class ParticlesComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.renderer.dispose();
   };
+  
   private initializeScene(): void {
     // Create a renderer and attach it to the DOM
     this.renderer = new THREE.WebGLRenderer({

@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import * as THREE from 'three';
 import { log } from 'three/webgpu';
 
@@ -9,7 +9,7 @@ import { log } from 'three/webgpu';
   templateUrl: './cube.component.html',
   styleUrl: './cube.component.css'
 })
-export class CubeComponent implements OnInit {
+export class CubeComponent implements OnInit, OnDestroy {
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -26,6 +26,10 @@ export class CubeComponent implements OnInit {
     this.initializeScene();
     this.startAnimationLoop();
   }
+
+  ngOnDestroy(): void {
+    this.renderer.dispose();
+  };
 
   private initializeScene(): void {
     // Create a renderer and attach it to the DOM
@@ -70,8 +74,8 @@ export class CubeComponent implements OnInit {
 
   private startAnimationLoop(): void {
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    // this.cube.rotation.x += 0.01;
-    // this.cube.rotation.y += 0.01;
+    this.cube.rotation.x += 0.01;
+    this.cube.rotation.y += 0.01;
     this.renderer.render(this.scene, this.camera);
   }
 
