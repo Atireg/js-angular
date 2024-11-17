@@ -1,12 +1,13 @@
 .grid-item {
-    aspect-ratio: 1; /* Keep items square in shape */
-    background-color: #cf762e8a;
+    background-color: #61000050;
     color: white;
     padding: 20px;
     text-align: center;
-    font-size: 1.5rem;
-    transition: transform 0.3s;
+    aspect-ratio: 1;
+    place-items: center;
     position: relative;
-  }
+}
 
-  
+/* .grid-item:hover {
+    transform: scale(1.05);
+} */

@@ -16,10 +16,6 @@ export class CubeComponent implements OnInit, OnDestroy {
   private camera!: THREE.PerspectiveCamera;
   private cube!: THREE.Mesh;
   private animationId!: number;
-  private sizes = {
-    width: window.innerWidth,
-    height: window.innerHeight
-  }
   
   constructor() { }
 
@@ -35,13 +31,18 @@ export class CubeComponent implements OnInit, OnDestroy {
   private initializeScene(): void {
     const gridItemContainer = this.containerRef.nativeElement
 
+    const sizes = {
+      width: gridItemContainer.clientWidth,
+      height: gridItemContainer.clientHeight,
+    }
+
     // Input Parameters
     const parameters = {
-      materialColor: '#ffeded'
+      materialColor: '#73d800f8'
     }
     // Texture
     const textureoader = new THREE.TextureLoader()
-    const gradientTexture = textureoader.load('./5.jpg')
+    const gradientTexture = textureoader.load('./3.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
     // Material
@@ -55,14 +56,14 @@ export class CubeComponent implements OnInit, OnDestroy {
       alpha: true
     });
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
-    this.renderer.setSize(gridItemContainer.clientWidth, gridItemContainer.clientHeight);
+    this.renderer.setSize(sizes.width, sizes.height);
     gridItemContainer.appendChild(this.renderer.domElement);
 
     // Create a scene
     this.scene = new THREE.Scene();
 
     // Create a camera
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    this.camera = new THREE.PerspectiveCamera(75, gridItemContainer.clientWidth / gridItemContainer.clientHeight, 0.1, 1000);
     this.camera.position.z = 5;
 
     // Create a cube
@@ -77,19 +78,23 @@ export class CubeComponent implements OnInit, OnDestroy {
     this.scene.add(directionalight)
 
     // Resize Grid Item
-    gridItemContainer.addEventListener('resize', () => {
-      // Update sizes
-      // gridItemContainer.clientWidth = window.innerWidth;
-      // this.sizes.height = window.innerHeight;
+    // gridItemContainer.addEventListener('resize', () => {
+    //   // Update sizes
+      
+    //   sizes.width = gridItemContainer.clientHeight;
+    //   sizes.height = gridItemContainer.clientHeight;
 
-      // Update camera
-      this.camera.aspect = gridItemContainer.clientWidth / gridItemContainer.clientHeight;
-      this.camera.updateProjectionMatrix();
+    //   console.log(sizes.width, sizes.height );
 
-      //Update renderer
-      this.renderer.setSize(gridItemContainer.clientWidth, gridItemContainer.clientHeight)
-      this.renderer.setPixelRatio(Math.min(gridItemContainer.devicePixelRatio, 2))
-    });
+
+    //   // Update camera
+    //   this.camera.aspect = sizes.width / sizes.height;
+    //   this.camera.updateProjectionMatrix();
+
+    //   //Update renderer
+    //   this.renderer.setSize(sizes.width, sizes.height)
+    //   this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+    // });
   };
 
   private startAnimationLoop(): void {
