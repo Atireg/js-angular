@@ -35,7 +35,10 @@ export class ParticlesComponent implements OnInit, OnDestroy {
   };
   private initializeScene(): void {
     // Create a renderer and attach it to the DOM
-    this.renderer = new THREE.WebGLRenderer({ canvas: this.canvasElement.nativeElement });
+    this.renderer = new THREE.WebGLRenderer({
+      canvas: this.canvasElement.nativeElement,
+      alpha: true
+    });
     this.renderer.outputColorSpace = THREE.LinearSRGBColorSpace
     this.renderer.setSize(window.innerWidth, window.innerHeight);
     
