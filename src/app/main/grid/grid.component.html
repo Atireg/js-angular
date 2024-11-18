@@ -1,5 +1,10 @@
 <div class="grid-container">
   @for(post of posts; track $index){
-    <app-cube />
+    <div>
+      <p>{{post.userId.username}} published </p>
+      <p>on {{post.created_at}}: </p>
+      <h1>{{post.text}}</h1>
+      <app-cube />
+    </div> 
   }
 </div>

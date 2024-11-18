@@ -9,4 +9,16 @@
   justify-content: center;
 }
 
+h1 {
+  padding: 0.3rem;
+  font-size: 1.7rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgba(228, 226, 163, 0.651);
+}
 
+p {
+  padding: 0.3rem;
+  font-size: 0.8rem;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color: rgba(228, 226, 163, 0.651);
+}
