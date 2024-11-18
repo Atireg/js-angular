@@ -1,8 +1,5 @@
 <div class="grid-container">
-  <app-cube />
-  <app-cube />
-  <app-cube />
-  <app-cube />
-  <app-cube />
-  <app-cube />
+  @for(post of posts; track $index){
+    <app-cube />
+  }
 </div>

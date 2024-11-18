@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CubeComponent } from '../cube/cube.component';
 import { ApiService } from '../../api.service';
+import { Post } from '../../types/post';
 
 @Component({
   selector: 'app-grid',
@@ -11,11 +12,12 @@ import { ApiService } from '../../api.service';
 })
 
 export class GridComponent implements OnInit {
+  posts: Post[] = [];
   constructor(private apiService: ApiService){}
 
   ngOnInit(): void {
     this.apiService.getPosts().subscribe((posts) => {
-      console.log(posts);
+      this.posts = posts;
     })
   }
 }
