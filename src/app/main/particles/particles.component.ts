@@ -28,12 +28,12 @@ export class ParticlesComponent implements OnInit, OnDestroy {
   };
   private clock!: THREE.Clock;
   private previousTime!: number;
+  isLoading = true;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
     this.initializeScene();
-
     this.resizeCanvas();
     this.cursor = {
       x: 0,
