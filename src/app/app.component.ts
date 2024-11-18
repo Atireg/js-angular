@@ -1,15 +1,15 @@
 import { Component, ElementRef, OnInit, OnDestroy } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ParticlesComponent } from './particles/particles.component';
-import { GridComponent } from './grid/grid.component';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { ParticlesComponent } from './main/particles/particles.component';
+import { GridComponent } from './main/grid/grid.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ParticlesComponent, GridComponent, HeaderComponent, FooterComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, ParticlesComponent, GridComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
