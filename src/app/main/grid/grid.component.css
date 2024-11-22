@@ -10,6 +10,20 @@
   justify-content: center;
 }
 
+.grid-item {
+  background-color: #00613950;
+  padding: 0.5rem;
+  text-align: center;
+  aspect-ratio: 1;
+  /* place-items: center; */
+  position: relative;
+}
+
+.grid-item:hover {
+  background-color: #51ce9a6c;
+  cursor: pointer;
+}
+
 h1 {
   padding: 0.3rem;
   font-size: 1.7rem;

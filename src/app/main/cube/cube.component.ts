@@ -16,14 +16,13 @@ export class CubeComponent implements OnInit, OnDestroy {
   theme = {} as Theme;
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
-  colour$ = new BehaviorSubject<string | null>(null);
+  // colour$ = new BehaviorSubject<string | null>(null);
 
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private cube!: THREE.Mesh;
   private animationId!: number;
-  private cubeParamaters!: {};
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
@@ -32,16 +31,10 @@ export class CubeComponent implements OnInit, OnDestroy {
 
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
-      this.colour$.next(theme.colour);
+      this.initializeScene(theme.colour);
+      this.startAnimationLoop();
     });
 
-    this.colour$.subscribe(colour => {
-      if (colour) {
-        this.initializeScene(colour);
-        this.startAnimationLoop();
-      }
-      //TODO Add error handling
-    });
   }
 
   ngOnDestroy(): void {
@@ -50,16 +43,16 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   private initializeScene(colour: string): void {
     const gridItemContainer = this.containerRef.nativeElement;
-    
+
     const parameters = {
       materialColor: new THREE.Color()
     }
 
-    if (colour === 'red'){
+    if (colour === 'red') {
       parameters.materialColor = new THREE.Color(0x990000);
-    } else if (colour === 'yellow'){
+    } else if (colour === 'yellow') {
       parameters.materialColor = new THREE.Color(0xFFFF00);
-    } else if (colour === 'blue'){
+    } else if (colour === 'blue') {
       parameters.materialColor = new THREE.Color(0x000099);
     }
 

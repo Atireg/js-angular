@@ -1,10 +1,9 @@
 .grid-item {
     background-color: #00613950;
-    color: white;
     padding: 0.5rem;
     text-align: center;
     aspect-ratio: 1;
-    place-items: center;
+    /* place-items: center; */
     position: relative;
 }
 

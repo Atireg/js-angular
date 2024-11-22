@@ -1,18 +1,15 @@
 <div class="grid-container">
-  @if (isLoading) {
   @for(theme of themes; track $index){
-  <div>
-    <app-loader />
-  </div>
-  }
-  } @else {
-  @for(theme of themes; track $index){
-  <div>
+  <div >
     <p>{{theme.userId.username}} published </p>
     <p>on {{theme.created_at}}: </p>
-    <h1>{{theme.colour}}</h1>
-    <a [routerLink]="theme._id">click</a>
+    <p>on {{theme.updatedAt}}: </p>
+    <!-- <h1>{{theme.}}</h1> -->
+    
+    <div class="grid-item">
+      <a [routerLink]="theme._id">click</a>
+    </div>
   </div>
-  }
+ 
   }
 </div>
