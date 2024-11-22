@@ -6,6 +6,7 @@
     height: calc(100vh - 160px); /* Adjust based on header and footer height */
     background-color: #000; /* Match theme background */
     color: #d6ff00;
+    
   }
   
   /* Login Box */
@@ -17,6 +18,7 @@
     width: 100%;
     max-width: 400px;
     text-align: center;
+    z-index: 1;
   }
   
   /* Login Title */

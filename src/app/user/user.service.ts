@@ -6,4 +6,6 @@ import { Injectable } from '@angular/core';
 export class UserService {
 
   constructor() { }
+  
+  //TODO: Save in local storage if Auth
 }
