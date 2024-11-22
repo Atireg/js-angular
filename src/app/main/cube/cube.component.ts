@@ -16,7 +16,7 @@ export class CubeComponent implements OnInit, OnDestroy {
   theme = {} as Theme;
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
-  // colour$ = new BehaviorSubject<string | null>(null);
+  rotation$ = new BehaviorSubject<number[] | null>(null);
 
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
@@ -27,11 +27,13 @@ export class CubeComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
+
     const themeId = this.route.snapshot.params['themeId'];
 
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
-      this.initializeScene(theme.colour);
+      this.initializeScene(theme.colour, theme.size);
+      this.rotation$.next(theme.rotation)
       this.startAnimationLoop();
     });
 
@@ -41,7 +43,7 @@ export class CubeComponent implements OnInit, OnDestroy {
     this.renderer.dispose();
   };
 
-  private initializeScene(colour: string): void {
+  private initializeScene(colour: string, size: number): void {
     const gridItemContainer = this.containerRef.nativeElement;
 
     const parameters = {
@@ -75,7 +77,7 @@ export class CubeComponent implements OnInit, OnDestroy {
     this.camera.position.z = 5;
 
     // Create a cube
-    const geometry = new THREE.BoxGeometry();
+    const geometry = new THREE.BoxGeometry(size, size, size);
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
 
@@ -114,11 +116,17 @@ export class CubeComponent implements OnInit, OnDestroy {
   };
 
   private startAnimationLoop(): void {
-    this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    this.cube.rotation.x += 0.01;
-    this.cube.rotation.y += 0.005;
-    // this.cube.rotation.z += 0.005;
-    this.renderer.render(this.scene, this.camera);
+    this.rotation$.subscribe(rotation => {
+      
+      if (rotation) {
+        // console.log(rotation[0].valueOf());
+        this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
+        this.cube.rotation.x += Number(rotation[0]);
+        this.cube.rotation.y += Number(rotation[1]);
+        this.cube.rotation.z += Number(rotation[2]);
+        this.renderer.render(this.scene, this.camera);
+      }
+    });
   };
 
 }

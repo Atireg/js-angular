@@ -4,6 +4,8 @@ import { User } from "./user";
 export interface Theme {
     "subscribers": string[];
     "posts": Post[];
+    "size": number;
+    "rotation": number[];
     "_id": string;
     "themeName": string;
     "userId": User;
