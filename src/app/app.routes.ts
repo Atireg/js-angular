@@ -6,6 +6,6 @@ export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
     //TODO: fix redirect to 404
+    { path: '404', component: ErrorComponent },
     { path: '**', redirectTo: '/404' },
-    { path: '404', component: ErrorComponent }
 ];
