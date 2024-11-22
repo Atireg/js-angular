@@ -1,0 +1,135 @@
+/* Profile Page Container */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 160px); /* Adjust based on header and footer height */
+    background-color: #000; /* Match theme background */
+    color: #d6ff00;
+  }
+  
+  /* Profile Box */
+  .profile-box {
+    background-color: #111; /* Slightly lighter background */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  /* Profile Title */
+  .profile-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #d6ff00;
+  }
+  
+  /* Profile Info Section */
+  .profile-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .profile-picture {
+    text-align: center;
+  }
+  
+  .profile-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d6ff00;
+    margin-bottom: 10px;
+  }
+  
+  .profile-picture-edit {
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    background-color: #d6ff00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-picture-edit:hover {
+    background-color: #b3cc00; /* Darker yellow */
+  }
+  
+  /* Profile Details Section */
+  .profile-details {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #d6ff00;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #222;
+    color: #d6ff00;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .form-input:focus {
+    box-shadow: 0 0 5px #d6ff00;
+  }
+  
+  /* Save Button */
+  .profile-save-button {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    background-color: #d6ff00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-save-button:hover {
+    background-color: #b3cc00; /* Darker yellow */
+  }
+  
+  /* Delete Button */
+  .profile-delete-button {
+    margin-top: 20px;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #ff0000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profile-delete-button:hover {
+    background-color: #cc0000; /* Darker red */
+  }
+  
