@@ -5,6 +5,7 @@ export interface Post {
     "likes": string[];
     "_id": string;
     "text": string;
+    "colour": string;
     "userId": User;
     "themeId": Theme;
     "created_at": string;

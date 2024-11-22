@@ -1,5 +1,8 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import * as THREE from 'three';
+import { ApiService } from '../../api.service';
+import { Theme } from '../../types/theme';
 
 @Component({
   selector: 'app-cube',
@@ -9,17 +12,27 @@ import * as THREE from 'three';
   styleUrl: './cube.component.css'
 })
 export class CubeComponent implements OnInit, OnDestroy {
-  @ViewChild('cube', { static: true }) containerRef!: ElementRef;
+  theme = {} as Theme;
+  colour!: string;
 
+  @ViewChild('cube', { static: true }) containerRef!: ElementRef;
+  
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private cube!: THREE.Mesh;
   private animationId!: number;
   
-  constructor() { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
+    const themeId = this.route.snapshot.params['themeId'];
+    
+    this.apiService.getSingleTheme(themeId).subscribe(theme => {
+      this.theme = theme;  
+      this.colour = this.theme.colour;
+    });
+
     this.initializeScene();
     this.startAnimationLoop();
   }
@@ -29,9 +42,9 @@ export class CubeComponent implements OnInit, OnDestroy {
   };
 
   private initializeScene(): void {
-    const gridItemContainer = this.containerRef.nativeElement
+    const gridItemContainer = this.containerRef.nativeElement;
 
-    
+    console.log(this.colour);
 
     // Input Parameters
     const parameters = {

@@ -1,17 +1,20 @@
 <div class="grid-container">
   @if (isLoading) {
-  @for(post of posts; track $index){
+  @for(theme of themes; track $index){
   <div>
     <app-loader />
   </div>
   }
   } @else {
-  @for(post of posts; track $index){
+  @for(theme of themes; track $index){
   <div>
-    <p>{{post.userId.username}} published </p>
-    <p>on {{post.created_at}}: </p>
-    <h1>{{post.text}}</h1>
-    <app-cube />
+    <p>{{theme.userId.username}} published </p>
+    <p>on {{theme.created_at}}: </p>
+    <h1>{{theme.colour}}</h1>
+    <a [routerLink]="theme._id">click</a>
+
+    
+    <!-- <app-cube /> -->
   </div>
   }
   }
