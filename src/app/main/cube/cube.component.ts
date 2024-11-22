@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import * as THREE from 'three';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-cube',
@@ -13,43 +14,55 @@ import { Theme } from '../../types/theme';
 })
 export class CubeComponent implements OnInit, OnDestroy {
   theme = {} as Theme;
-  colour!: string;
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
-  
+  colour$ = new BehaviorSubject<string | null>(null);
+
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
   private cube!: THREE.Mesh;
   private animationId!: number;
-  
+  private cubeParamaters!: {};
+
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
     const themeId = this.route.snapshot.params['themeId'];
-    
+
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
-      this.theme = theme;  
-      this.colour = this.theme.colour;
+      this.theme = theme;
+      this.colour$.next(theme.colour);
     });
 
-    this.initializeScene();
-    this.startAnimationLoop();
+    this.colour$.subscribe(colour => {
+      if (colour) {
+        this.initializeScene(colour);
+        this.startAnimationLoop();
+      }
+      //TODO Add error handling
+    });
   }
 
   ngOnDestroy(): void {
     this.renderer.dispose();
   };
 
-  private initializeScene(): void {
+  private initializeScene(colour: string): void {
     const gridItemContainer = this.containerRef.nativeElement;
-
-    console.log(this.colour);
-
-    // Input Parameters
+    
     const parameters = {
-      materialColor: new THREE.Color(0xFCF300)
+      materialColor: new THREE.Color()
     }
+
+    if (colour === 'red'){
+      parameters.materialColor = new THREE.Color(0x990000);
+    } else if (colour === 'yellow'){
+      parameters.materialColor = new THREE.Color(0xFFFF00);
+    } else if (colour === 'blue'){
+      parameters.materialColor = new THREE.Color(0x000099);
+    }
+
     // Texture
     const textureoader = new THREE.TextureLoader()
     const gradientTexture = textureoader.load('./5.jpg')
@@ -86,7 +99,7 @@ export class CubeComponent implements OnInit, OnDestroy {
     // Resize Grid Item
     window.addEventListener('resize', () => {
       // Update sizes
-      
+
       sizes.width = gridItemContainer.clientWidth;
 
       // Update camera
@@ -114,4 +127,5 @@ export class CubeComponent implements OnInit, OnDestroy {
     // this.cube.rotation.z += 0.005;
     this.renderer.render(this.scene, this.camera);
   };
+
 }

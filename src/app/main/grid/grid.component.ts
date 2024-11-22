@@ -22,10 +22,6 @@ export class GridComponent implements OnInit {
     this.apiService.getThemes().subscribe((themes) => {
       this.themes = themes;
       this.isLoading = false;
-      this.themes.forEach(t => {
-        console.log(t.colour)
-      });
-
     })
   }
 }
