@@ -96,9 +96,9 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   private startAnimationLoop(): void {
     this.animationId = requestAnimationFrame(() => this.startAnimationLoop());
-    this.cube.rotation.x += 0.005;
+    this.cube.rotation.x += 0.01;
     this.cube.rotation.y += 0.005;
-    this.cube.rotation.z += 0.005;
+    // this.cube.rotation.z += 0.005;
     this.renderer.render(this.scene, this.camera);
   };
 }
