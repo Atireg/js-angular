@@ -16,15 +16,28 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
   @ViewChildren('cubeContainer') cubeContainers!: QueryList<ElementRef>;
 
   cubes: Theme[] = [];
-  private scenes: Map<string, { scene: THREE.Scene, camera: THREE.PerspectiveCamera, renderer: THREE.WebGLRenderer, cube: THREE.Mesh }> = new Map();
   private animationFrames: Map<string, number> = new Map();
-
+  private scenes: Map<string, { 
+    scene: THREE.Scene, 
+    camera: THREE.PerspectiveCamera, 
+    renderer: THREE.WebGLRenderer, 
+    cube: THREE.Mesh,
+    rotationSpeeds: number[] 
+  }> = new Map();
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   // Helper method to get rotation speed from array
-  //TODO Add all rotation axis
-  private getRotationSpeed(cube: Theme): number {
-    return cube.rotation && cube.rotation.length > 0 ? Number(cube.rotation[0]) : 0;
+  private getRotationSpeed(cube: Theme, axis: number): number {
+    return cube.rotation && cube.rotation.length > axis ? Number(cube.rotation[axis]) : 0;
+  };
+
+  // Helper method to get all rotation speeds
+  private getAllRotationSpeeds(cube: Theme): number[] {
+    return [
+      this.getRotationSpeed(cube, 0), // X axis
+      this.getRotationSpeed(cube, 1), // Y axis
+      this.getRotationSpeed(cube, 2)  // Z axis
+    ];
   }
 
   ngOnInit() {
@@ -68,11 +81,19 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     scene.add(cube);
     camera.position.z = 5;
 
+    const rotationSpeeds = this.getAllRotationSpeeds(cubeData);
+
     // Store the Three.js objects
-    this.scenes.set(cubeData._id, { scene, camera, renderer, cube });
+    this.scenes.set(cubeData._id, { 
+      scene, 
+      camera, 
+      renderer, 
+      cube,
+      rotationSpeeds 
+    });
 
     // Start animation
-    this.animate(cubeData._id, this.getRotationSpeed(cubeData));
+    this.animate(cubeData._id);
 
     // Handle window resize
     const resizeObserver = new ResizeObserver(() => {
@@ -85,16 +106,17 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     resizeObserver.observe(container);
   }
 
-  private animate(cubeId: string, speed: number) {
+  private animate(cubeId: string) {
     const sceneData = this.scenes.get(cubeId);
     if (!sceneData) return;
 
-    const { scene, camera, renderer, cube } = sceneData;
+    const { scene, camera, renderer, cube, rotationSpeeds } = sceneData;
 
     const animateFrame = () => {
-      cube.rotation.x += speed;
-      cube.rotation.y += speed;
-      cube.rotation.y += speed;
+      // Apply rotation for each axis
+      cube.rotation.x += rotationSpeeds[0];
+      cube.rotation.y += rotationSpeeds[1];
+      cube.rotation.z += rotationSpeeds[2];
 
       renderer.render(scene, camera);
       this.animationFrames.set(cubeId, requestAnimationFrame(animateFrame));
