@@ -55,9 +55,10 @@
 }
 
 .nav-link:hover {
-    color: rgb(255, 136, 0);
-    outline: 2px solid rgb(255, 136, 0);
+    color: rgb(252, 243, 0);
+    outline: 1px solid rgb(252, 243, 0);
     outline-offset: 2px;
+    background-color: #45a049;
 }
 
 .nav-link:hover::before {
