@@ -73,10 +73,40 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
+    // Texture
+    const textureoader = new THREE.TextureLoader()
+    const gradientTexture = textureoader.load('./5.jpg')
+    gradientTexture.magFilter = THREE.NearestFilter
+
+    // Material
+    const parameters = {
+      materialColor: new THREE.Color()
+    }
+
+    if (cubeData.colour === 'red') {
+      parameters.materialColor = new THREE.Color(0x990000);
+    } else if (cubeData.colour === 'green') {
+      parameters.materialColor = new THREE.Color(0x00FF00);
+    } else if (cubeData.colour === 'blue') {
+      parameters.materialColor = new THREE.Color(0x000099);
+    }
+
+    const material = new THREE.MeshToonMaterial({
+      color: parameters.materialColor,
+      gradientMap: gradientTexture
+    })
+
+
+
     // Create cube
     const geometry = new THREE.BoxGeometry(cubeData.size, cubeData.size, cubeData.size);
-    const material = new THREE.MeshBasicMaterial({ color: cubeData.colour });
+    // const material = new THREE.MeshBasicMaterial({ color: cubeData.colour });
     const cube = new THREE.Mesh(geometry, material);
+
+    // Create lights
+    const directionalight = new THREE.DirectionalLight('#ffffff', 3)
+    directionalight.position.set(1, 1, 0)
+    scene.add(directionalight)
 
     scene.add(cube);
     camera.position.z = 5;

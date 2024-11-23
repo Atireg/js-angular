@@ -46,24 +46,25 @@ export class CubeComponent implements OnInit, OnDestroy {
   private initializeScene(colour: string, size: number): void {
     const gridItemContainer = this.containerRef.nativeElement;
 
-    const parameters = {
-      materialColor: new THREE.Color()
-    }
-
-    if (colour === 'red') {
-      parameters.materialColor = new THREE.Color(0x990000);
-    } else if (colour === 'yellow') {
-      parameters.materialColor = new THREE.Color(0xFFFF00);
-    } else if (colour === 'blue') {
-      parameters.materialColor = new THREE.Color(0x000099);
-    }
-
     // Texture
     const textureoader = new THREE.TextureLoader()
     const gradientTexture = textureoader.load('./5.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
     // Material
+    const parameters = {
+      materialColor: new THREE.Color()
+    }
+
+    if (colour === 'red') {
+      parameters.materialColor = new THREE.Color(0x990000);
+    } else if (colour === 'green') {
+      parameters.materialColor = new THREE.Color(0x00FF00);
+    } else if (colour === 'blue') {
+      parameters.materialColor = new THREE.Color(0x000099);
+    }
+
+
     const material = new THREE.MeshToonMaterial({
       color: parameters.materialColor,
       gradientMap: gradientTexture
