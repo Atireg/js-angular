@@ -1,0 +1,12 @@
+<div class="catalog-container">
+    <div *ngFor="let cube of cubes" class="cube-card">
+      <div [id]="'cube-container-' + cube._id" #cubeContainer class="cube-viewport"></div>
+      <div class="cube-info">
+        <h3>Cube {{cube._id}}</h3>
+        <p>Color: {{cube.colour}}</p>
+        <p>Size: {{cube.size}}</p>
+        <a [routerLink]="cube._id">Details</a>
+        <!-- <p>Speed: {{cube.rotation[0]}}x</p> -->
+      </div>
+    </div>
+  </div>

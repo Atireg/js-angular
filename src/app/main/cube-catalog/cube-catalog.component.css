@@ -1,0 +1,24 @@
+.catalog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  .cube-card {
+    border: 1px solid #dddddd65;
+    /* border-radius: 8px; */
+    overflow: hidden;
+    z-index: 1;
+    /* background: #dddddd65; */
+    /* box-shadow: 0 2px 4px rgba(0,0,0,0.1); */
+  }
+  .cube-viewport {
+    width: 100%;
+    height: 200px;
+    border: 1px solid #dddddd65;
+
+    /* background: #dddddd65; */
+  }
+  .cube-info {
+    padding: 15px;
+  }

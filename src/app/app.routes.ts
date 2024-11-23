@@ -6,6 +6,7 @@ import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { GridComponent } from './main/grid/grid.component';
 import { CubeComponent } from './main/cube/cube.component';
+import { CubeCatalogComponent } from './main/cube-catalog/cube-catalog.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -17,7 +18,7 @@ export const routes: Routes = [
 
     //Catalog Routing
     { path: 'catalog', children: [ 
-        {path: '', component: GridComponent},
+        {path: '', component: CubeCatalogComponent},
         {path: ':themeId', component: CubeComponent}
 
     ] },
