@@ -18,6 +18,18 @@ const themeSchema = new mongoose.Schema({
         type: ObjectId,
         ref: "Post"
     }],
+    colour: {
+        type: String,
+        required: true
+    },
+    rotation: [{
+        type: String,
+        required: true
+    }],
+    size: {
+        type: String,
+        required: true
+    }
 }, { timestamps: { createdAt: 'created_at' } });
 
 module.exports = mongoose.model('Theme', themeSchema);

@@ -13,6 +13,7 @@ router.post('/:themeId', auth(), postController.createPost);
 router.put('/:themeId', auth(), themeController.subscribe);
 router.put('/:themeId/posts/:postId', auth(), postController.editPost);
 router.delete('/:themeId/posts/:postId', auth(), postController.deletePost);
+router.patch('/themes/:themeId/properties', auth(), themeController.updateThemeProperties);
 
 // router.get('/my-trips/:id/reservations', auth(), themeController.getReservations);
 

@@ -44,7 +44,7 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     // Fetch cube data from your database
     // CUBES === THEMES!!
     this.apiService.getThemes().subscribe(cubes => {
-      this.cubes = cubes;     
+      this.cubes = cubes;         
     });
   }
 
@@ -59,7 +59,7 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     this.cubeContainers.forEach((container: ElementRef, index: number) => {
       const cube = this.cubes[index];
       // console.log(cube);
-
+      
       this.initializeThreeJS(container.nativeElement, cube);
     });
   }
