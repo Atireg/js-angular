@@ -20,5 +20,9 @@ export class ApiService {
     return this.http.get<Theme>(`${ apiUrl }/themes/${id}`)
   };
 
+  createCube(){
+    
+  }
+
   
 }

@@ -12,8 +12,13 @@ import { RouterLink } from '@angular/router';
 export class CreateCubeComponent {
   constructor(private apiService: ApiService){}
 
-  addCube(){
-
+  addCube(event: Event, inputSize: string){
+    event.preventDefault();
+    console.log(inputSize);
+    // this.apiService.createCube(inputSize).subscribe(data => {
+    //   console.log(data);
+    // })
   }
+
 
 }
