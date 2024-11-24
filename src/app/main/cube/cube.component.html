@@ -5,10 +5,12 @@
     <div class="posts-section">
         <button class="edit-button">Edit</button>
         <button class="like-button">Like</button>
-        <h2>Recent Posts</h2>
+        <h2>people's reactions:</h2>
         @for (post of theme.posts; track $index) {
         <div class="post">
-            <p>{{post.userId.username}} wrote on {{post.created_at}}: {{post.text}}</p>
+            <!-- <p>{{post.userId.username}} wrote on {{post.created_at}}:</p> -->
+            <p>{{post.userId.username}} wrote:</p>
+            <p class="post-text">"{{post.text}}"</p>
         </div>
         }
     </div>
