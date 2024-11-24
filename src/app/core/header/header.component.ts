@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../user/user.service';
 
 @Component({
@@ -14,7 +14,14 @@ export class HeaderComponent {
     return this.userService.isLogged;
   };
 
-  constructor(private userService: UserService){
+  get firstName(): string {
+    return this.userService.user?.firstName || '';
+  }
 
+  constructor(private userService: UserService, private router: Router){};
+
+  logout(){
+    this.userService.logout();
+    this.router.navigate(['home/'])
   }
 }
