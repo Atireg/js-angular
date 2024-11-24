@@ -2,38 +2,41 @@
 
   <app-welcome-msg [isLoggedIn]="isLoggedIn"/>
 
-  <div class="featured-section">
-    <h2 class="section-title">Featured Creations</h2>
-    <div class="featured-grid">
-      <div class="featured-item"> <!-- Example for featured content -->
-        <img src="https://via.placeholder.com/150" alt="Featured Cube 1" class="featured-image">
-        <p class="featured-caption">Amazing Cube #1</p>
-      </div>
-      <div class="featured-item">
-        <img src="https://via.placeholder.com/150" alt="Featured Cube 2" class="featured-image">
-        <p class="featured-caption">Creative Design #2</p>
-      </div>
-      <div class="featured-item">
-        <img src="https://via.placeholder.com/150" alt="Featured Cube 3" class="featured-image">
-        <p class="featured-caption">Inspiring Work #3</p>
-      </div>
-    </div>
-  </div>
-  <div class="updates-section">
-    <h2 class="section-title">Latest Updates</h2>
-    <div class="updates-feed">
-      <div class="update-item">
-        <p class="update-text"><strong>John Doe</strong> shared a new creation: *Golden Cube*</p>
-        <p class="update-time">2 hours ago</p>
-      </div>
-      <div class="update-item">
-        <p class="update-text"><strong>Jane Smith</strong> commented on your post: *This looks fantastic!*</p>
-        <p class="update-time">5 hours ago</p>
-      </div>
-      <div class="update-item">
-        <p class="update-text"><strong>Cube Club</strong> launched a new contest: *Best 3D Animation*</p>
-        <p class="update-time">1 day ago</p>
+  @if(isLoggedIn){
+    <div class="featured-section">
+      <h2 class="section-title">Featured Creations</h2>
+      <div class="featured-grid">
+        <div class="featured-item">
+          <img src="https://via.placeholder.com/150" alt="Featured Cube 1" class="featured-image">
+          <p class="featured-caption">Amazing Cube #1</p>
+        </div>
+        <div class="featured-item">
+          <img src="https://via.placeholder.com/150" alt="Featured Cube 2" class="featured-image">
+          <p class="featured-caption">Creative Design #2</p>
+        </div>
+        <div class="featured-item">
+          <img src="https://via.placeholder.com/150" alt="Featured Cube 3" class="featured-image">
+          <p class="featured-caption">Inspiring Work #3</p>
+        </div>
       </div>
     </div>
-  </div>
+    <div class="updates-section">
+      <h2 class="section-title">Latest Updates</h2>
+      <div class="updates-feed">
+        <div class="update-item">
+          <p class="update-text"><strong>John Doe</strong> shared a new creation: *Golden Cube*</p>
+          <p class="update-time">2 hours ago</p>
+        </div>
+        <div class="update-item">
+          <p class="update-text"><strong>Jane Smith</strong> commented on your post: *This looks fantastic!*</p>
+          <p class="update-time">5 hours ago</p>
+        </div>
+        <div class="update-item">
+          <p class="update-text"><strong>Cube Club</strong> launched a new contest: *Best 3D Animation*</p>
+          <p class="update-time">1 day ago</p>
+        </div>
+      </div>
+    </div>
+  }
+
 </main>

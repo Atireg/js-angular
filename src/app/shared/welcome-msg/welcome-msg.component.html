@@ -1,10 +1,17 @@
-
 @if(isLoggedIn) {
-  <div class="welcome-section">
-    <h1 class="welcome-title">Welcome to The Cube Club</h1>
-    <p class="welcome-text">Discover, share, and explore amazing 3D creations. Join the community today!</p>
-  </div>
+<div class="welcome-section">
+  <h1 class="welcome-title">Welcome to The Cube Club</h1>
+  <p class="welcome-text">Discover, share, and explore amazing 3D creations. Join the community today!</p>
+</div>
 } @else {
-  <h1 class="not-logged">Would you like to login?</h1>
-};
+<div class="not-logged">
+  <h1>
+    Would you like to
+    <a routerLink="/login" class="nav-link">login</a>
+    or
+    <a routerLink="/register" class="nav-link">register</a>
+    ?
+  </h1>
+</div>
 
+};
