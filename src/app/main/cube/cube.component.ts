@@ -48,7 +48,7 @@ export class CubeComponent implements OnInit, OnDestroy {
 
     // Texture
     const textureoader = new THREE.TextureLoader()
-    const gradientTexture = textureoader.load('./5.jpg')
+    const gradientTexture = textureoader.load('./3.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
     // Material
@@ -57,11 +57,14 @@ export class CubeComponent implements OnInit, OnDestroy {
     }
 
     if (colour === 'red') {
-      parameters.materialColor = new THREE.Color(0x990000);
+      // parameters.materialColor = new THREE.Color(0x990000);
+      parameters.materialColor = new THREE.Color(0xff4d4d);
     } else if (colour === 'green') {
-      parameters.materialColor = new THREE.Color(0x00FF00);
+      // parameters.materialColor = new THREE.Color(0x00FF00);
+      parameters.materialColor = new THREE.Color(0x66cc66);
     } else if (colour === 'blue') {
-      parameters.materialColor = new THREE.Color(0x000099);
+      // parameters.materialColor = new THREE.Color(0x00FF00);
+      parameters.materialColor = new THREE.Color(0x4d4dff);
     }
 
 

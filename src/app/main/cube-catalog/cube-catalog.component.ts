@@ -73,22 +73,25 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
 
-    // Texture
+    // Create texture
     const textureoader = new THREE.TextureLoader()
-    const gradientTexture = textureoader.load('./5.jpg')
+    const gradientTexture = textureoader.load('./3.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
-    // Material
+    // Create material
     const parameters = {
       materialColor: new THREE.Color()
     }
 
     if (cubeData.colour === 'red') {
-      parameters.materialColor = new THREE.Color(0x990000);
+      // parameters.materialColor = new THREE.Color(0x990000);
+      parameters.materialColor = new THREE.Color(0xff4d4d);
     } else if (cubeData.colour === 'green') {
-      parameters.materialColor = new THREE.Color(0x00FF00);
+      // parameters.materialColor = new THREE.Color(0x00FF00);
+      parameters.materialColor = new THREE.Color(0x66cc66);
     } else if (cubeData.colour === 'blue') {
-      parameters.materialColor = new THREE.Color(0x000099);
+      // parameters.materialColor = new THREE.Color(0x00FF00);
+      parameters.materialColor = new THREE.Color(0x4d4dff);
     }
 
     const material = new THREE.MeshToonMaterial({
@@ -96,11 +99,8 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
       gradientMap: gradientTexture
     })
 
-
-
     // Create cube
     const geometry = new THREE.BoxGeometry(cubeData.size, cubeData.size, cubeData.size);
-    // const material = new THREE.MeshBasicMaterial({ color: cubeData.colour });
     const cube = new THREE.Mesh(geometry, material);
 
     // Create lights
