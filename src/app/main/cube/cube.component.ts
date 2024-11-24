@@ -36,7 +36,6 @@ export class CubeComponent implements OnInit, OnDestroy {
       this.rotation$.next(theme.rotation)
       this.startAnimationLoop();
     });
-
   }
 
   ngOnDestroy(): void {

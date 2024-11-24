@@ -7,13 +7,18 @@
     background-color: #0036203b; /* Green background color */
     color: rgb(252, 243, 0);
     top: 0px;
-    ;
+    z-index: 1;
   }
   
   .logo {
     font-size: 2rem;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: bold;
+    z-index: 1;
+  }
+
+  .logo:hover {
+    cursor: pointer;
   }
   
   .nav {

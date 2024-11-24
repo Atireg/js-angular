@@ -1,9 +1,15 @@
-<div #cube class="grid-item">
-    <!-- @for (post of theme.posts; track $index) {
-        <div>
+<div class="cube-container">
+    <div #cube class="cube-area">
+    </div>
+
+    <div class="posts-section">
+        <button class="edit-button">Edit</button>
+        <button class="like-button">Like</button>
+        <h2>Recent Posts</h2>
+        @for (post of theme.posts; track $index) {
+        <div class="post">
             <p>{{post.userId.username}} wrote on {{post.created_at}}: {{post.text}}</p>
         </div>
-    } -->
-    <button class="edit-button">Edit</button>
-    <button class="like-button">Like</button>
+        }
+    </div>
 </div>

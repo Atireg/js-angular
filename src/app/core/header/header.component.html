@@ -1,11 +1,12 @@
 <header class="header">
-    <div class="logo">THE CUBE CLUB</div>
+    <div class="logo" routerLink="/home">THE CUBE CLUB</div>
     <!-- <img src="path/to/logo.svg" alt="The Cube Club Logo" class="logo-img"> -->
     <nav class="nav">
         <ul class="nav-list">
             @if (!isLoggedIn) {
             <li class="nav-item"><a routerLink="/login" class="nav-link">Login</a></li>
             <li class="nav-item"><a routerLink="/register" class="nav-link">Register</a></li>
+            <!-- <li class="nav-item"><a routerLink="/catalog/create-cube" class="nav-link">Create Your Own Cube</a></li> -->
             }
             <!-- <li class="nav-item"><a routerLink="/home" class="nav-link">Home</a></li> -->
             <li class="nav-item"><a routerLink="/home" class="nav-link">Home</a></li>
