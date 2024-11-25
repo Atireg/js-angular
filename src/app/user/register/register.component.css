@@ -46,10 +46,28 @@
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #222;
+    background-color: #2222228c;
     color: #d6ff00;
     outline: none;
     transition: box-shadow 0.3s ease;
+  }
+
+  .form-input-error {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fa62623b;
+    color: #ff2600;
+    outline: none;
+    transition: box-shadow 0.3s ease;
+  }
+
+
+  .form-error {
+    color: #ff2600;
+    font-weight: bold;
   }
   
   .form-input:focus {
