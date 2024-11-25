@@ -2,7 +2,7 @@
   display: flex; 
   height: 100vh; 
   width: 100vw; 
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; 
 }
 
 .cube-area {
@@ -19,10 +19,8 @@
   z-index: 1;
   overflow: hidden; 
 }
-
 .posts-section {
   flex: 1;
-  background-color: #111;
   padding: 2rem;
   overflow-y: 2rem;
   color: rgb(252, 243, 0);
@@ -68,3 +66,26 @@
   color: black;
   background-color: rgb(252, 243, 0);
 }
+
+
+.tooltip {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  color: rgba(252, 244, 0, 0.505);
+  padding: 8px 15px;
+  font-size: 14px;
+  pointer-events: none;
+  opacity: 0;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.tooltip.visible {
+  opacity: 1;
+}
+
+

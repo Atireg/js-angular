@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild, HostListener } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as THREE from 'three';
 import { ApiService } from '../../api.service';
@@ -16,8 +16,9 @@ export class CubeComponent implements OnInit, OnDestroy {
   theme = {} as Theme;
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
+  private cursorTooltip: HTMLElement | null = null;
+
   rotation$ = new BehaviorSubject<number[] | null>(null);
-  
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -25,6 +26,7 @@ export class CubeComponent implements OnInit, OnDestroy {
   private animationId!: number;
   private rotationSubscription!: Subscription;
   isRotating: boolean = true;
+  showTooltip: boolean = true;
   private currentRotation: number[] = [0, 0, 0];
 
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
@@ -56,12 +58,25 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   onMouseOver() {
     this.isRotating = false;
-    console.log('STOP!');
-    
+    this.showTooltip = false;
   }
 
   onMouseOut() {
     this.isRotating = true;
+    setTimeout(() => {
+      this.showTooltip = true;
+    }, 1000);
+  }
+
+  @HostListener('mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    if (!this.isRotating) {
+      const tooltip = document.querySelector('.tooltip') as HTMLElement;
+      if (tooltip) {
+        tooltip.style.left = `${event.clientX + 10}px`;
+        tooltip.style.top = `${event.clientY - 20}px`;
+      }
+    }
   }
 
   private setupRotationSubscription(): void {

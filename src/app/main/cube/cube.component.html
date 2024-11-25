@@ -1,5 +1,7 @@
 <div class="cube-container">
-    <div #cube (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" class="cube-area">
+    
+    <div #cube (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" [class.hovering]="isRotating" class="cube-area">
+        <div class="tooltip" [class.visible]="!isRotating">MOVE OUTSIDE TO SPIN</div> 
     </div>
 
     <div class="posts-section">
