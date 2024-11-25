@@ -23,7 +23,7 @@
 .posts-section {
   flex: 1;
   background-color: #111;
-  padding: 20px;
+  padding: 2rem;
   overflow-y: 2rem;
   color: rgb(252, 243, 0);
 }
@@ -40,7 +40,7 @@
 .edit-button {
   padding: 0.5rem;
   font-size: 1rem;
-  color: rgb(252, 243, 0);
+  color: rgba(252, 244, 0, 0.505);
   background-color: #0547078e;
   border: none;
   cursor: pointer;
@@ -56,8 +56,8 @@
 .like-button {
   padding: 0.5rem;
   font-size: 1rem;
-  color: #005706;
-  background-color: rgba(252, 244, 0, 0.767);
+  color: #054707;
+  background-color: rgba(252, 244, 0, 0.505);
   border: none;
   cursor: pointer;
   transition: background-color 0.3s;

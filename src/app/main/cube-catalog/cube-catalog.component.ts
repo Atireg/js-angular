@@ -160,6 +160,7 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     this.scenes.forEach((sceneData, cubeId) => {
       if (this.animationFrames.has(cubeId)) {
         cancelAnimationFrame(this.animationFrames.get(cubeId)!);
+        sceneData.cube.geometry.dispose();
       }
       sceneData.renderer.dispose();
     });
