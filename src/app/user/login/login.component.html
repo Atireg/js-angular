@@ -8,6 +8,16 @@
                     #inputEmail="ngModel" required
                     [appEmail]="domains">
             </div>
+            @if(inputEmail?.touched){
+                <div class="form-error">
+                    @if(inputEmail?.errors?.['required']){
+                        <p >Email is required!</p>
+                    }
+                    @if(inputEmail?.errors?.['emailValidator']){
+                        <p >Email is not valid!</p>
+                    }
+                </div>
+            }
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" name="password" class="form-input"

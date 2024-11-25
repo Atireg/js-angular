@@ -55,6 +55,11 @@
   transition: box-shadow 0.3s ease;
 }
 
+.form-error {
+  color: #ff2600;
+  font-weight: bold;
+}
+
 .form-input:focus {
   box-shadow: 0 0 5px #d6ff00;
 }
