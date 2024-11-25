@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angula
 import { RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../consts';
+import { matchPasswordsValidator } from '../../utils/match-passes.validator';
 
 @Component({
   selector: 'app-register',
@@ -17,12 +18,17 @@ export class RegisterComponent {
       username: new FormControl('', [Validators.required, Validators.minLength(5)]),
       email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
       tel: new FormControl(''),
-      passGroup: new FormGroup({
-        password: new FormControl('', [Validators.required]),
-        rePassword: new FormControl('', [Validators.required]),
-      })
-    }
-  );
+
+      passGroup: new FormGroup(
+        {
+          password: new FormControl('', [Validators.required, Validators.minLength(5)]),
+          rePassword: new FormControl('', [Validators.required]),
+        },
+        {
+          validators: [matchPasswordsValidator('password', 'rePassword')],
+        }
+      )
+    });
 
   isInputMissing(controlName: string) {
     return (
@@ -31,10 +37,10 @@ export class RegisterComponent {
     )
   };
 
-  get isNotMinLength() {
+  isNotMinLength(controlName: string) {
     return (
-      this.form.get('username')?.touched
-      && this.form.get('username')?.errors?.['minlength']
+      this.form.get(controlName)?.touched
+      && this.form.get(controlName)?.errors?.['minlength']
     )
   };
 
@@ -45,7 +51,7 @@ export class RegisterComponent {
     )
   };
 
-  get getPassGroup(){
+  get getPassGroup() {
     return this.form.get('passGroup')
   }
 

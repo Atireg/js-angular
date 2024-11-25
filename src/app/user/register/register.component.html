@@ -5,7 +5,7 @@
         <div class="form-group">
           <label for="username" class="form-label">Username *</label>
           <input
-            [class]="isInputMissing('username') || isNotMinLength ? 'form-input-error' : 'form-input'"
+            [class]="isInputMissing('username') || isNotMinLength('username') ? 'form-input-error' : 'form-input'"
             type="text"
             id="username"
             name="username"
@@ -61,7 +61,14 @@
           <div class="form-group">
             <label for="password" class="form-label">Password *</label>
             <input
-              class="form-input"
+              
+              [class] = "(
+                (getPassGroup?.get('password')?.touched &&
+                getPassGroup?.get('password')?.errors?.['required']) ||
+                (getPassGroup?.get('password')?.touched &&
+                getPassGroup?.get('password')?.errors?.['minlength'])
+                )
+                ? 'form-input-error' : 'form-input' "
               type="password"
               id="password"
               name="password"
@@ -73,14 +80,22 @@
           @if(getPassGroup?.get('password')?.touched){
             <div class="form-error">
                 @if(getPassGroup?.get('password')?.errors?.['required']){
-                    <p>Password is required!</p>
+                  <p>Password is required!</p>
                 }
+                @if(getPassGroup?.get('password')?.errors?.['minlength']){
+                  <p>Password must be at least 5 characters!</p>
+              }
             </div>
           }
           <div class="form-group">
             <label for="rePassword" class="form-label">Confirm Password *</label>
             <input
-              class="form-input"
+            [class] = "(
+              (getPassGroup?.get('rePassword')?.touched &&
+              (getPassGroup?.get('rePassword')?.errors?.['required'] ||
+              getPassGroup?.errors?.['matchPasswordsValidator'])
+              ))
+              ? 'form-input-error' : 'form-input' "
               type="password"
               id="rePassword"
               name="rePassword"
@@ -89,6 +104,21 @@
               required
             />
           </div>
+          @if(getPassGroup?.get('rePassword')?.touched){
+            <div class="form-error">
+                @if(getPassGroup?.get('rePassword')?.errors?.['required']){
+                    <p>Confirming password is required!</p>
+                }
+            </div>
+          }
+          @if(getPassGroup?.get('rePassword')?.touched){
+            <div class="form-error">
+              @if(getPassGroup?.errors?.['matchPasswordsValidator'] ||
+              getPassGroup?.get('rePassword')?.errors?.['required']){
+                <p>Password do not match!</p>
+              }
+          </div>
+          }
         </div>
         <button
           [disabled]="form.invalid"
