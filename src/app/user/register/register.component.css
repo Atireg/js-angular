@@ -10,7 +10,7 @@
   
   /* Register Box */
   .register-box {
-    background-color: #e4ff5f65; /* Slightly lighter background */
+    background-color: #51ce9a6c; 
     padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -41,6 +41,7 @@
   }
   
   .form-input {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -53,6 +54,7 @@
   }
 
   .form-input-error {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -76,6 +78,7 @@
   
   /* Register Button */
   .register-button {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px;
     font-size: 18px;
