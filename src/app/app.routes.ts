@@ -21,7 +21,7 @@ export const routes: Routes = [
     {
         path: 'catalog', children: [
             { path: '', component: CubeCatalogComponent },
-            { path: ':themeId', component: CubeComponent },
+            { path: ':themeId', component: CubeComponent, canActivate: [AuthGuard] },
         ]
     },
     { path: 'create-cube', component: CreateCubeComponent, canActivate: [AuthGuard] },
