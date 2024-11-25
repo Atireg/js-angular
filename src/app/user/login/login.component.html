@@ -4,9 +4,20 @@
         <form class="login-form" #form="ngForm" (ngSubmit)="login(form)">
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input class="form-input" type="text" id="email" name="email" placeholder="Enter your email" ngModel
-                    #inputEmail="ngModel" required
-                    [appEmail]="domains">
+                <input
+                    [class]="(
+                        (inputEmail?.touched && inputEmail?.errors?.['required']) ||
+                        (inputEmail?.touched && inputEmail?.errors?.['emailValidator'])
+                        ? 'form-input-error' : 'form-input'
+                    )"
+                    type="text" id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    ngModel
+                    #inputEmail="ngModel"
+                    required
+                    [appEmail]="domains"
+                />
             </div>
             @if(inputEmail?.touched){
                 <div class="form-error">
@@ -20,10 +31,33 @@
             }
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" id="password" name="password" class="form-input"
-                    placeholder="Enter your password" requored #inputPassword>
+                <input
+                    [class]="(
+                        (inputEmail?.touched && inputEmail?.errors?.['required']) ||
+                        (inputEmail?.touched && inputEmail?.errors?.['emailValidator'])
+                        ? 'form-input-error' : 'form-input'
+                    )"
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    ngModel
+                    #inputPassword="ngModel"
+                    required
+                    minlength="5"
+                />
             </div>
-            <button class="login-button">Login</button>
+            @if(inputPassword?.touched){
+                <div class="form-error">
+                    @if(inputPassword?.errors?.['required']){
+                        <p >Password is required!</p>
+                    }
+                    @if(inputPassword?.errors?.['minlength']){
+                        <p >Password must be at least 5 characters!</p>
+                    }
+                </div>
+            }
+            <button [disabled]="form.invalid" class="login-button">Login</button>
             <p class="login-footer">
                 Don't have an account? <a href="/register" class="login-link">Register here</a>
             </p>
