@@ -7,6 +7,7 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { CubeComponent } from './main/cube/cube.component';
 import { CubeCatalogComponent } from './main/cube-catalog/cube-catalog.component';
 import { CreateCubeComponent } from './main/create-cube/create-cube.component';
+import { AuthGuard } from './guards/auth.guard';
 
 
 export const routes: Routes = [
@@ -23,7 +24,7 @@ export const routes: Routes = [
             { path: ':themeId', component: CubeComponent },
         ]
     },
-    { path: 'create-cube', component: CreateCubeComponent },
+    { path: 'create-cube', component: CreateCubeComponent, canActivate: [AuthGuard] },
     //Error Routing
     { path: '404', component: ErrorComponent },
     { path: '**', redirectTo: '/404' },

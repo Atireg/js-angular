@@ -42,7 +42,7 @@
     font-size: 1rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     transition: all 0.3s ease;
-    padding: 8px 16px;
+    padding: 1rem 2rem;
 }
 
 .nav-link::before {
