@@ -1,18 +1,19 @@
 <main class="login-container">
     <div class="login-box">
         <h1 class="login-title">Login</h1>
-        <form action="/login" method="POST" class="login-form">
+        <form class="login-form" #form="ngForm" (ngSubmit)="login(form)">
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" class="form-input" placeholder="Enter your email"
-                    required #inputEmail>
+                <input class="form-input" type="text" id="email" name="email" placeholder="Enter your email" ngModel
+                    #inputEmail="ngModel" required
+                    [appEmail]="domains">
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" name="password" class="form-input"
-                    placeholder="Enter your password" required #inputPassword>
+                    placeholder="Enter your password" requored #inputPassword>
             </div>
-            <button type="submit" (click)="login($event, inputPassword.value, inputEmail.value)" class="login-button">Login</button>
+            <button class="login-button">Login</button>
             <p class="login-footer">
                 Don't have an account? <a href="/register" class="login-link">Register here</a>
             </p>
