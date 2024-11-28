@@ -20,7 +20,7 @@ export class ParticlesComponent implements OnInit, OnDestroy {
     height: window.innerHeight
   }
   private particles!: THREE.Points;
-  private particlesColor!: '#ffeded';
+  private particlesColor!: THREE.Color; 
   private animationId!: number;
   private cursor!: {
     x: number,
@@ -46,7 +46,14 @@ export class ParticlesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.animationId) {
+      cancelAnimationFrame(this.animationId);
+    }
+    
     this.renderer.dispose();
+    this.scene.remove(this.particles);
+    this.particles.geometry.dispose();
+    (this.particles.material as THREE.Material).dispose();
   };
 
   private initializeScene(): void {
@@ -84,10 +91,12 @@ export class ParticlesComponent implements OnInit, OnDestroy {
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
     // Material
+    this.particlesColor = new THREE.Color('rgba(255, 249, 128, 1)');
     const particlesMaterial = new THREE.PointsMaterial({
       color: this.particlesColor,
+      blendAlpha: 0.5,
       sizeAttenuation: true,
-      size: 0.03
+      size: 0.02
     })
 
     // Points

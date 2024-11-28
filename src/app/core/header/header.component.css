@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem;
+    padding: 1rem 2rem;
     background-color: #51ce9a33; /* Green background color */
     color: rgb(252, 243, 0);
     top: 0px;
