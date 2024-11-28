@@ -7,16 +7,18 @@
     color: #d6ff00;
     z-index: 1;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    
 
   }
   
   /* Profile Box */
   .profile-box {
-    background-color: #e4ff5f65; /* Slightly lighter background */
+    background-color: #51ce9a6c; /* Slightly lighter background */
     padding: 30px;
     width: 100%;
     max-width: 600px;
     text-align: center;
+    z-index: 1;
   }
   
   /* Profile Title */
@@ -81,11 +83,13 @@
   }
   
   .form-input {
+    box-sizing: border-box;
     width: 100%;
     padding: 10px;
     font-size: 16px;
     border: none;
     border-radius: 5px;
+    background-color: #2222228c;
     color: #d6ff00;
     outline: none;
     transition: box-shadow 0.3s ease;
@@ -94,6 +98,22 @@
   .form-input:focus {
     box-shadow: 0 0 5px #d6ff00;
   }
+  .form-error {
+    color: #ff2600;
+    font-weight: bold;
+  }
+  
+  .form-input-error {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    background-color: #fa62623b;
+    color: #ff2600;
+    transition: box-shadow 0.3s ease;
+  }
   
   /* Save Button */
   .profile-save-button {
@@ -101,7 +121,7 @@
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
-    color: #000;
+    color: #002c1a;
     background-color: #d6ff00;
     border: none;
     border-radius: 5px;
@@ -110,6 +130,7 @@
   }
   
   .profile-save-button:hover {
+    box-sizing: border-box;
     background-color: #b3cc00; /* Darker yellow */
   }
   
@@ -119,8 +140,8 @@
     padding: 10px;
     font-size: 16px;
     font-weight: bold;
-    color: #fff;
-    background-color: #ff0000;
+    color: #002c1a;
+    background-color: #cc00007c;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -128,6 +149,6 @@
   }
   
   .profile-delete-button:hover {
-    background-color: #cc0000; /* Darker red */
+    background-color: #cc0000bd; /* Darker red */
   }
   
