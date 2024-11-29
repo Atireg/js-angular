@@ -37,6 +37,12 @@ export class UserService {
     return this.http
     .post<UserForAuth>('/api/register', { username, email, password, rePassword })
     .pipe(tap((user) => this.user$$.next(user)))
+  };
+
+  getProfile(){
+    return this.http
+    .get<UserForAuth>('/api/users/profile')
+    .pipe(tap((user) => this.user$$.next(user)))
   }
 
   logout() {
@@ -44,5 +50,4 @@ export class UserService {
     localStorage.removeItem(this.USER_KEY)
   };
 
-  
 }
