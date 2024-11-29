@@ -17,9 +17,9 @@ export class CreateCubeComponent {
     if (form.invalid){
       return
     }
-    console.log(form.value);
+    // console.log(form.value);
     
-    // this.apiService.createCube(inputSize).subscribe(data => {
+    // this.apiService.createCube('cubeSize').subscribe(data => {
     //   console.log(data);
     // })
   }

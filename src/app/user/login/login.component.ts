@@ -3,7 +3,7 @@ import { UserService } from '../user.service';
 import { Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { EmailDirective } from '../../directives/email.directive';
-import {DOMAINS} from '../../consts'
+import { DOMAINS } from '../../consts'
 
 @Component({
   selector: 'app-login',
@@ -23,8 +23,14 @@ export class LoginComponent {
       return;
     }
 
-    this.userService.login();
-    this.router.navigate(['/home'])
+    const { email, password } = form.value;
+    this.userService.login(email, password).subscribe(() =>{
+      this.router.navigate(['/home'])
+    })
+    
+
+    // this.userService.login();
+    // this.router.navigate(['/home'])
     
   }
 }

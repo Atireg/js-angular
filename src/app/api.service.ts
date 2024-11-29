@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/environment.development';
 import { Theme } from './types/theme';
 
 @Injectable({
@@ -11,16 +10,16 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getThemes(){
-    const { apiUrl }  = environment;
-    return this.http.get<Theme[]>(`${ apiUrl }/themes`)
+    return this.http.get<Theme[]>('/api/themes')
   };
 
   getSingleTheme(id:string){
-    const { apiUrl }  = environment;
-    return this.http.get<Theme>(`${ apiUrl }/themes/${id}`)
+    return this.http.get<Theme>(`/api/themes/${id}`)
   };
 
-  createCube(){
+  createCube(size: string){
+    const payload = { size };
+    return this.http.post<Theme>('api/themes', payload)
     
   }
 
