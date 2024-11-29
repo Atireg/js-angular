@@ -12,12 +12,12 @@
         <!-- READ-ONLY MODE -->
         <ng-container>
           <div class="details-group">
-            <label for="username" class="label">Username</label>
-            <p type="text" id="username" name="username" class="text-input" value="" required>John Doe</p>
+            <label class="label">User</label>
+            <p class="text-input">{{profileDetails.username}}</p>
           </div>
           <div class="details-group">
-            <label for="email" class="form-label">Email</label>
-            <p type="text" id="email" name="email" class="text-input" value="" required>{{"johndoe@example.com"}}</p>
+            <label class="label">Email</label>
+            <p class="text-input">{{profileDetails.email}}</p>
           </div>
           <div>
             <button class="save-cancel-edit-btn" (click)="toggleEditMode()">Edit</button>
@@ -26,26 +26,67 @@
         }@else {
         <!-- EDIT MODE -->
         <ng-container>
-          <form>
+          <form [formGroup]="form" (ngSubmit)="handleSaveProfile()">
             <div>
               <button class="profile-picture-edit">Change Picture</button>
             </div>
             <div class="details-group">
               <label for="username" class="label">Username</label>
-              <input type="text" id="username" name="username" class="text-input" value="JohnDoe" required>
+              <input
+                type="text"
+                id="username"
+                name="username"
+                class="text-input"
+                formControlName="username"
+                required>
             </div>
+            @if(form.get('username')?.touched){
+              <div class="form-error">
+                  @if(form.get('username')?.errors?.['required']){
+                      <p>Username is required!</p>
+                  }
+                  @if(form.get('username')?.errors?.['minlength']){
+                      <p>Username must be at least 5 characters!</p>
+                  }
+              </div>
+            }
             <div class="details-group">
               <label for="email" class="label">Email</label>
-              <input type="email" id="email" name="email" class="text-input" value="johndoe@example.com" required>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                class="text-input"
+                formControlName="email"
+                required>
             </div>
-            <div class="details-group">
+            @if(form.get('email')?.touched){
+              <div class="form-error">
+                  @if(form.get('email')?.errors?.['required']){
+                      <p>Email is required!</p>
+                  }
+                  @if(form.get('email')?.errors?.['emailValidator']){
+                      <p>Email is not valid!</p>
+                  }
+              </div>
+            }
+            <!-- <div class="details-group">
               <label for="password" class="label">New Password</label>
-              <input type="password" id="password" name="password" class="text-input"
+              <input
+                type="password"
+                id="password"
+                name="password"
+                class="text-input"
                 placeholder="Enter a new password">
-            </div>
+            </div> -->
             <div class="profile-footer">
-              <button class="save-cancel-edit-btn" (click)="toggleEditMode()">Cancel</button>
-              <button class="save-cancel-edit-btn">Save</button>
+              <button class="save-cancel-edit-btn" (click)="onCancel($event)">Cancel</button>
+              <button
+                [disabled]="form.invalid"
+                [style]="{ backgroundColor: form.invalid ? '#51ce9a33' : '#d6ff00' }"
+                class="save-cancel-edit-btn">
+                Save
+              </button>
               <button class="delete-btn">Delete</button>
             </div>
           </form>
