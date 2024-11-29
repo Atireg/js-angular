@@ -8,4 +8,6 @@
 [] take out all colors as environment variables
 [] add a twist when hover onto the cubes (gsap?)
 
+Integrating Rive: https://www.youtube.com/watch?v=WOOtILLrb0Q&ab_channel=DesignCourse
+
 
