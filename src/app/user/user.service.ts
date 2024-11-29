@@ -31,10 +31,18 @@ export class UserService {
     return this.http
     .post<UserForAuth>('/api/login', { email, password })
     .pipe(tap((user) => this.user$$.next(user)))
+  };
+
+  register(username: string, email: string, password: string, rePassword: string){
+    return this.http
+    .post<UserForAuth>('/api/register', { username, email, password, rePassword })
+    .pipe(tap((user) => this.user$$.next(user)))
   }
 
   logout() {
     this.user = null;
     localStorage.removeItem(this.USER_KEY)
-  }
+  };
+
+  
 }

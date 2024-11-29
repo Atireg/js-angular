@@ -9,7 +9,7 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
     // debugger;
     req = req.clone({
       url: req.url.replace(API, apiUrl),
-      // withCredentials: true
+      withCredentials: true
     })
 
   }

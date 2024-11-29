@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Route, Router, RouterLink } from '@angular/router';
 import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../consts';
 import { matchPasswordsValidator } from '../../utils/match-passes.validator';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-register',
@@ -29,6 +30,10 @@ export class RegisterComponent {
         }
       )
     });
+
+    constructor(private userService: UserService, private router: Router){
+
+    }
 
   isInputMissing(controlName: string) {
     return (
@@ -59,6 +64,14 @@ export class RegisterComponent {
     if (this.form.invalid) {
       return
     }
-    console.log(this.form.value)
+    const {
+      username,
+      email,
+      passGroup: { password, rePassword }  = {}
+    } = this.form.value;
+
+    this.userService.register(username!, email!, password!, rePassword!).subscribe(()=> {
+      this.router.navigate(['/home'])
+    });
   }
 }
