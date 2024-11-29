@@ -8,5 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+  isEditMode: boolean = false;
 
+  toggleEditMode(){
+    this.isEditMode = !this.isEditMode;
+  }
 }
