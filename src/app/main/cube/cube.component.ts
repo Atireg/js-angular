@@ -16,7 +16,6 @@ export class CubeComponent implements OnInit, OnDestroy {
   theme = {} as Theme;
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
-  private cursorTooltip: HTMLElement | null = null;
 
   rotation$ = new BehaviorSubject<number[] | null>(null);
   private renderer!: THREE.WebGLRenderer;

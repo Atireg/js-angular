@@ -19,7 +19,9 @@ export class UserService {
   }
 
   constructor(private http: HttpClient) {
-    
+    this.user$.subscribe((user) => {
+      this.user = user;
+    })
   }
 
   login(email: string, password: string) {

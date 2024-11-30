@@ -17,11 +17,10 @@ export class ApiService {
     return this.http.get<Theme>(`/api/themes/${id}`)
   };
 
-  createCube(size: string){
-    const payload = { size };
-    return this.http.post<Theme>('api/themes', payload)
+  createCube(themeName: null, postText: null, colour: string, size: string, rotation: string[]){
+    const payload = { themeName, postText, size, colour, rotation };
+    console.log(payload);
     
+    return this.http.post<Theme>('/api/themes', payload)
   }
-
-  
 }

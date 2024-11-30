@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-cube',
@@ -10,18 +11,22 @@ import { FormsModule, NgForm } from '@angular/forms';
   styleUrl: './create-cube.component.css'
 })
 export class CreateCubeComponent {
-  constructor(private apiService: ApiService){}
+  constructor(private apiService: ApiService, private router: Router){}
 
   addCube(form: NgForm ){
     console.log(form.invalid);
     if (form.invalid){
       return
     }
-    // console.log(form.value);
+
+    const {cubeColor, cubeSize, rotationX, rotationY, rotationZ} = form.value;
+
+    console.log(cubeColor);
+
     
-    // this.apiService.createCube('cubeSize').subscribe(data => {
-    //   console.log(data);
-    // })
+    this.apiService.createCube(null, null, cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe((data) => {
+      this.router.navigate(['/catalog'])
+    })
   }
 
 

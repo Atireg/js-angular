@@ -10,7 +10,7 @@
             
             @if (isLoggedIn) {
             <li class="nav-item"><a routerLink="/create-cube" class="nav-link">Create Your Cube</a></li>
-            <li class="nav-item"><a routerLink="/profile" class="nav-link">{{firstName}}'s profile</a></li>
+            <li class="nav-item"><a routerLink="/profile" class="nav-link">{{username}}'s profile</a></li>
             <li class="nav-item"><a (click)="logout()" class="nav-link">Logout</a></li>
 
             } @else {
