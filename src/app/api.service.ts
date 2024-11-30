@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Theme } from './types/theme';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +18,7 @@ export class ApiService {
     return this.http.get<Theme>(`/api/themes/${id}`)
   };
 
-  createCube(themeName: null, postText: null, colour: string, size: string, rotation: string[]){
+  createCube(themeName: string, postText: string, colour: string, size: string, rotation: string[]){
     const payload = { themeName, postText, size, colour, rotation };
     console.log(payload);
     

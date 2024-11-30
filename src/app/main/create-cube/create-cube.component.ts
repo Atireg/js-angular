@@ -24,7 +24,7 @@ export class CreateCubeComponent {
     console.log(cubeColor);
 
     
-    this.apiService.createCube(null, null, cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe((data) => {
+    this.apiService.createCube('Test', 'Test', cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe(() => {
       this.router.navigate(['/catalog'])
     })
   }
