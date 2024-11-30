@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrl: './create-cube.component.css'
 })
 export class CreateCubeComponent {
+  defaultColor: string = '#111011';
+
   constructor(private apiService: ApiService, private router: Router){}
 
   addCube(form: NgForm ){
@@ -21,11 +23,10 @@ export class CreateCubeComponent {
 
     const {cubeName, cubeColor, cubeSize, cubePost, rotationX, rotationY, rotationZ} = form.value;
     
-    console.log(cubeColor);
-
+    // console.log(cubeColor);
 
     this.apiService.createCube(cubeName, cubePost, cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe(() => {
-      this.router.navigate(['/catalog'])
+      this.router.navigate(['/catalog']);
     })
   }
 

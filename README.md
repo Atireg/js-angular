@@ -1,6 +1,6 @@
 //TODOS
 
-[] change the rest-api to be able to record and receive data about the color, size and rotation in the create view
+[X] change the rest-api to be able to record and receive data about the color, size and rotation in the create view
 
 //WISH LIST
 
@@ -8,6 +8,7 @@
 [] take out all colors as environment variables
 [] add a twist when hover onto the cubes (gsap?)
 [] take all repetative error handling parts from the mark-ups 
+[] highlight the last added cube in the catalog
 
 Integrating Rive: https://www.youtube.com/watch?v=WOOtILLrb0Q&ab_channel=DesignCourse
 
