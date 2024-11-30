@@ -78,24 +78,8 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     const gradientTexture = textureoader.load('./3.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
-    // Create material
-    const parameters = {
-      materialColor: new THREE.Color()
-    }
-
-    if (cubeData.colour === 'red') {
-      // parameters.materialColor = new THREE.Color(0x990000);
-      parameters.materialColor = new THREE.Color(0xff4d4d);
-    } else if (cubeData.colour === 'green') {
-      // parameters.materialColor = new THREE.Color(0x00FF00);
-      parameters.materialColor = new THREE.Color(0x66cc66);
-    } else if (cubeData.colour === 'blue') {
-      // parameters.materialColor = new THREE.Color(0x00FF00);
-      parameters.materialColor = new THREE.Color(0x4d4dff);
-    }
-
     const material = new THREE.MeshToonMaterial({
-      color: parameters.materialColor,
+      color: cubeData.colour,
       gradientMap: gradientTexture
     })
 

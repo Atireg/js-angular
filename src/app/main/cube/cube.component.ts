@@ -106,21 +106,9 @@ export class CubeComponent implements OnInit, OnDestroy {
     const gradientTexture = textureoader.load('./3.jpg')
     gradientTexture.magFilter = THREE.NearestFilter
 
-    // Material
-    const parameters = {
-      materialColor: new THREE.Color()
-    }
-
-    if (colour === 'red') {
-      parameters.materialColor = new THREE.Color(0xff4d4d);
-    } else if (colour === 'green') {
-      parameters.materialColor = new THREE.Color(0x66cc66);
-    } else if (colour === 'blue') {
-      parameters.materialColor = new THREE.Color(0x4d4dff);
-    }
 
     const material = new THREE.MeshToonMaterial({
-      color: parameters.materialColor,
+      color: new THREE.Color(colour),
       gradientMap: gradientTexture
     })
 

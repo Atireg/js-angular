@@ -19,15 +19,14 @@ export class CreateCubeComponent {
       return
     }
 
-    const {cubeColor, cubeSize, rotationX, rotationY, rotationZ} = form.value;
-
+    const {cubeName, cubeColor, cubeSize, cubePost, rotationX, rotationY, rotationZ} = form.value;
+    
     console.log(cubeColor);
 
-    
-    this.apiService.createCube('Test', 'Test', cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe(() => {
+
+    this.apiService.createCube(cubeName, cubePost, cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe(() => {
       this.router.navigate(['/catalog'])
     })
   }
-
 
 }

@@ -42,6 +42,7 @@
     margin-bottom: 5px;
     color: #d6ff00;
   }
+
   
   .form-input {
     box-sizing: border-box;
@@ -58,6 +59,38 @@
   
   .form-input:focus {
     box-shadow: 0 0 5px #d6ff00;
+  }
+
+  .color-picker-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .color-preview {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #d6ff00;
+    border-radius: 5px;
+    background-color: #000000; 
+  }
+  
+  .form-input[type="color"] {
+    /* -webkit-appearance: none; */
+    border: none;
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    cursor: pointer;
+  }
+  
+  .form-input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+  
+  .form-input[type="color"]::-webkit-color-swatch {
+    border: none;
+    border-radius: 5px;
   }
 
   .form-error {
