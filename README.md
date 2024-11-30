@@ -7,6 +7,7 @@
 [] integrate the loader into the three.js scene (e.g. async initScene())
 [] take out all colors as environment variables
 [] add a twist when hover onto the cubes (gsap?)
+[] take all repetative error handling parts from the mark-ups 
 
 Integrating Rive: https://www.youtube.com/watch?v=WOOtILLrb0Q&ab_channel=DesignCourse
 

@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService {
 
-  private user$$ = new BehaviorSubject< UserForAuth | undefined >(undefined);
+  private user$$ = new BehaviorSubject< UserForAuth | null >(null);
   private user$ = this.user$$.asObservable();
   USER_KEY = '[user]';
 
@@ -19,12 +19,7 @@ export class UserService {
   }
 
   constructor(private http: HttpClient) {
-    try {
-      const lsUser = localStorage.getItem(this.USER_KEY) || '';
-      this.user = JSON.parse(lsUser)
-    } catch (error) {
-      this.user = null;
-    }
+    
   }
 
   login(email: string, password: string) {
@@ -46,8 +41,9 @@ export class UserService {
   }
 
   logout() {
-    this.user = null;
-    localStorage.removeItem(this.USER_KEY)
+    return this.http
+    .post<UserForAuth>('/api/logout', {})
+    .pipe(tap((user) => this.user$$.next(null)))
   };
 
 }

@@ -91,10 +91,11 @@ export class ParticlesComponent implements OnInit, OnDestroy {
     particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3))
 
     // Material
-    this.particlesColor = new THREE.Color('rgba(255, 249, 128, 0.534)');
+    this.particlesColor = new THREE.Color('rgb(255, 249, 128)');
     const particlesMaterial = new THREE.PointsMaterial({
       color: this.particlesColor,
-      blendAlpha: 0.5,
+      transparent: true,
+      opacity: 0.5,
       sizeAttenuation: true,
       size: 0.02,
     })
