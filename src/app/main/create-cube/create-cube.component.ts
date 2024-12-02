@@ -16,14 +16,12 @@ export class CreateCubeComponent {
   constructor(private apiService: ApiService, private router: Router){}
 
   addCube(form: NgForm ){
-    console.log(form.invalid);
+    // console.log(form.invalid);
     if (form.invalid){
       return
     }
 
     const {cubeName, cubeColor, cubeSize, cubePost, rotationX, rotationY, rotationZ} = form.value;
-    
-    // console.log(cubeColor);
 
     this.apiService.createCube(cubeName, cubePost, cubeColor, cubeSize, [rotationX, rotationY, rotationZ]).subscribe(() => {
       this.router.navigate(['/catalog']);

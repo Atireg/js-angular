@@ -20,7 +20,8 @@ export class WelcomeCubeComponent implements AfterViewInit{
       src: 'cube-rolling.riv', 
       autoplay: true,
       onLoad: () => {
-        console.log('Rive animation loaded');
+        //TODO Replace with my animation character
+        // console.log('Rive animation loaded');
       }
     });
   }

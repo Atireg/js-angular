@@ -39,7 +39,7 @@ export class ProfileComponent {
 
   onCancel(event: Event){
     event.preventDefault();
-    console.log('onCancel envoked');
+    // console.log('onCancel envoked');
     this.toggleEditMode();
   }
 }
