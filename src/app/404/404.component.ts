@@ -2,12 +2,12 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-error',
+  selector: 'app-page-no-found',
   standalone: true,
   imports: [RouterLink],
-  templateUrl: './error.component.html',
-  styleUrl: './error.component.css'
+  templateUrl: './404.component.html',
+  styleUrl: './404.component.css'
 })
-export class ErrorComponent {
+export class PageNotFoundComponent {
 
 }

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { ErrorComponent } from './error/error.component';
+import { PageNotFoundComponent } from './404/404.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
 import { ProfileComponent } from './user/profile/profile.component';
@@ -8,7 +8,7 @@ import { CubeComponent } from './main/cube/cube.component';
 import { CubeCatalogComponent } from './main/cube-catalog/cube-catalog.component';
 import { CreateCubeComponent } from './main/create-cube/create-cube.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +27,7 @@ export const routes: Routes = [
     },
     { path: 'create-cube', component: CreateCubeComponent, canActivate: [AuthGuard] },
     //Error Routing
-    { path: '404', component: ErrorComponent },
+    {path: 'error', component: ErrorMsgComponent},
+    { path: '404', component: PageNotFoundComponent },
     { path: '**', redirectTo: '/404' },
 ];

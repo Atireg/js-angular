@@ -20,7 +20,6 @@ export class ApiService {
 
   createCube(themeName: string, postText: string, colour: string, size: string, rotation: string[]){
     const payload = { themeName, postText, size, colour, rotation };
-    // console.log(payload);
     return this.http.post<Theme>('/api/themes', payload)
   };
 
