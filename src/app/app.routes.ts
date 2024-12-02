@@ -24,7 +24,11 @@ export const routes: Routes = [
             { path: ':themeId', component: CubeComponent },
         ]
     },
-    { path: 'create-cube', component: CreateCubeComponent, canActivate: [AuthGuard] },
+    { path: 'create-cube',
+        loadComponent: () => import('./main/create-cube/create-cube.component')
+            .then((c) => c.CreateCubeComponent),
+        canActivate: [AuthGuard],
+    },
     //Error Routing
     {path: 'error', component: ErrorMsgComponent},
     { path: '404', component: PageNotFoundComponent },
