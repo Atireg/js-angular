@@ -8,11 +8,13 @@ import { ErrorMsgService } from './error-msg.service';
   templateUrl: './error-msg.component.html',
   styleUrl: './error-msg.component.css'
 })
-export class ErrorMsgComponent implements OnInit{
-  constructor(private errorMsgService: ErrorMsgService){};
-  
-  ngOnInit(): void {
-    
-  }
+export class ErrorMsgComponent implements OnInit {
+  errorMsg = '';
+  constructor(private errorMsgService: ErrorMsgService) { };
 
+  ngOnInit(): void {
+    this.errorMsgService.apiError$.subscribe((err: any) => {
+      this.errorMsg = err?.message;
+    })
+  }
 }

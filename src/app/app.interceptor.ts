@@ -10,7 +10,6 @@ const { apiUrl } = environment;
 
 export const appInterceptor: HttpInterceptorFn = (req, next) => {
   if(req.url.startsWith(API)){
-    // debugger;
     req = req.clone({
       url: req.url.replace(API, apiUrl),
       withCredentials: true
@@ -25,12 +24,11 @@ export const appInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((err) =>{
 
       if(err.status === 401){
-        router.navigate(['/login'])
+        router.navigate(['/login']);
       } else {
         errorMsgService.setError(err);
         router.navigate(['/error'])
       }
-
       return [err];
     })
   );

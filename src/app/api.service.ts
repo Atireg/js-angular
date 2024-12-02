@@ -23,5 +23,9 @@ export class ApiService {
     return this.http.post<Theme>('/api/themes', payload)
   };
 
+  // updateCube(themeId: string, themeName: string, postText: string, colour: string, size: string, rotation: string[]){
+  //   const payload = { themeName, postText, size, colour, rotation };
+  //   return this.http.put<Theme>(`/api/themes/${themeId}`, payload)
+  // };
 
 }
