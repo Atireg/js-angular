@@ -11,7 +11,7 @@
         @for (post of theme.posts; track $index) {
         <div class="post">
             <!-- <p>{{post.userId.username}} wrote on {{post.created_at}}:</p> -->
-            <p>{{post.userId.username}} wrote:</p>
+            <p>{{post.userId.username}} wrote {{ post.userId.created_at | elapsedTime }}:</p>
             <p class="post-text">"{{post.text}}"</p>
         </div>
         }

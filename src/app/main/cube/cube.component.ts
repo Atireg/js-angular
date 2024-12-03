@@ -4,11 +4,12 @@ import * as THREE from 'three';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
 import { BehaviorSubject, Subscription } from 'rxjs'
+import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 
 @Component({
   selector: 'app-cube',
   standalone: true,
-  imports: [],
+  imports: [ElapsedTimePipe],
   templateUrl: './cube.component.html',
   styleUrl: './cube.component.css'
 })
