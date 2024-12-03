@@ -4,6 +4,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { ParticlesComponent } from './core/particles/particles.component';
 import { AuthenticateComponent } from './authenticate/authenticate.component';
+import { UserService } from './user/user.service';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +15,12 @@ import { AuthenticateComponent } from './authenticate/authenticate.component';
 })
 export class AppComponent {
   title = '3D experience';
+
+  get isLoggedIn(): boolean {
+    return this.userService.isLogged;
+  }
+
+  constructor(private userService: UserService){
+
+  }
 }

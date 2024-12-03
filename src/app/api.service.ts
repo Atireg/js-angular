@@ -11,7 +11,7 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   getThemes(){
-    return this.http.get<Theme[]>('/api/themes')
+    return this.http.get<Theme[]>('/api/theme123s')
   };
 
   getSingleTheme(id:string){

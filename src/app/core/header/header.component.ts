@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../../user/user.service';
-import { WelcomeCubeComponent } from '../../shared/welcome-cube/welcome-cube.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, WelcomeCubeComponent],
+  imports: [RouterLink],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })

@@ -1,5 +1,0 @@
-app-welcome-cube {
-    width: 0.1rem;  /* or any specific size */
-    height: 0.1rem;
-    display: block; /* ensure it respects width/height */
-  }
