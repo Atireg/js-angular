@@ -4,11 +4,12 @@ import { Theme } from '../../types/theme';
 import * as THREE from 'three'
 import { ApiService } from '../../api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { SlicePipe } from '../../shared/pipes/slice.pipe';
 
 @Component({
   selector: 'app-cube-catalog',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, SlicePipe],
   templateUrl: './cube-catalog.component.html',
   styleUrl: './cube-catalog.component.css'
 })
