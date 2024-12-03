@@ -26,7 +26,7 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     cube: THREE.Mesh,
     rotationSpeeds: number[] 
   }> = new Map();
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private apiService: ApiService) { }
 
   // Helper method to get rotation speed from array
   private getRotationSpeed(cube: Theme, axis: number): number {

@@ -48,4 +48,10 @@ export class UserService {
     .pipe(tap((user) => this.user$$.next(null)))
   };
 
+  updateProfile(username: string, email: string){
+    return this.http
+      .put<UserForAuth>(`/api/users/profile`, {username, email})
+      .pipe(tap((user) => this.user$$.next(user)))
+  };
+
 }

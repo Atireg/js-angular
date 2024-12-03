@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { emailValidator } from '../../utils/email.validator';
 import { DOMAINS } from '../../consts';
 import { ProfileDetails } from '../../types/user';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-profile',
@@ -11,33 +12,46 @@ import { ProfileDetails } from '../../types/user';
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   isEditMode: boolean = false;
 
   profileDetails: ProfileDetails = {
-    username: 'JohnDoe',
-    email: 'johndoe123@gmail.com'
-  }
+    username: '',
+    email: ''
+  };
 
   form = new FormGroup({
-    username: new FormControl(this.profileDetails.username, [Validators.required, Validators.minLength(5)]),
-    email: new FormControl(this.profileDetails.email, [Validators.required, emailValidator(DOMAINS)]),
-  })
+    username: new FormControl('', [Validators.required, Validators.minLength(5)]),
+    email: new FormControl('', [Validators.required, emailValidator(DOMAINS)]),
+  });
 
-  toggleEditMode(){
+  constructor(private userService: UserService) { }
+
+  ngOnInit(): void {
+    const { username, email } = this.userService.user!;
+    this.profileDetails = { username, email };
+
+    this.form.setValue({ username, email })
+  }
+
+  toggleEditMode() {
     this.isEditMode = !this.isEditMode;
   };
 
-  handleSaveProfile(){
-    if (this.form.invalid){
+  handleSaveProfile() {
+    if (this.form.invalid) {
       return;
     }
 
     this.profileDetails = this.form.value as ProfileDetails;
-    this.toggleEditMode();
+    const { username, email } = this.profileDetails;
+    this.userService.updateProfile(username, email).subscribe(() => {
+      this.toggleEditMode();
+    });
+
   };
 
-  onCancel(event: Event){
+  onCancel(event: Event) {
     event.preventDefault();
     // console.log('onCancel envoked');
     this.toggleEditMode();
