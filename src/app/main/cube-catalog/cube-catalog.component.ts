@@ -5,11 +5,12 @@ import * as THREE from 'three'
 import { ApiService } from '../../api.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SlicePipe } from '../../shared/pipes/slice.pipe';
+import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 
 @Component({
   selector: 'app-cube-catalog',
   standalone: true,
-  imports: [CommonModule, RouterLink, SlicePipe],
+  imports: [CommonModule, RouterLink, SlicePipe, ElapsedTimePipe],
   templateUrl: './cube-catalog.component.html',
   styleUrl: './cube-catalog.component.css'
 })

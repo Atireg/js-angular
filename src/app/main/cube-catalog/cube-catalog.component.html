@@ -3,6 +3,7 @@
       <div [routerLink]="cube._id" [id]="'cube-container-' + cube._id" #cubeContainer class="cube-viewport"></div>
       <div [routerLink]="cube._id" [id]="'cube-container-' + cube._id" class="cube-info">
         <h3>created by: {{cube.userId.username}}</h3>
+        <p>on: {{cube.created_at | elapsedTime : 5 }}</p>
         <p>name: {{cube.themeName | slice : 5 }}</p>
         <p>color: {{cube.colour}}</p>
         <p>size: {{cube.size}}</p>
