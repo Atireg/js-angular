@@ -10,8 +10,8 @@
         <h2>people's reactions:</h2>
         @for (post of theme.posts; track $index) {
         <div class="post">
-            <!-- <p>{{post.userId.username}} wrote on {{post.created_at}}:</p> -->
-            <p>{{post.userId.username}} wrote {{ post.userId.created_at | elapsedTime }}:</p>
+            <!-- <p>{{post.userId.username}} wrote on {{ post.userId.created_at | elapsedTime}}:</p> -->
+            <p>{{post.userId.username}} wrote on {{ post.userId.created_at | date : 'yyyy-mm-dd hh:mm:ss' }}:</p>
             <p class="post-text">"{{post.text}}"</p>
         </div>
         }
