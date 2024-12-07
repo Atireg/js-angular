@@ -33,14 +33,24 @@ export class CubeComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute, private apiService: ApiService) { }
 
   ngOnInit(): void {
+
     const themeId = this.route.snapshot.params['themeId'];
-    
+
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
       this.initializeScene(theme.colour, theme.size);
       this.rotation$.next(theme.rotation);
       this.setupRotationSubscription();
       this.animate();
+    });
+
+    // Triggers a refresh after a new post is created
+    this.route.queryParams.subscribe(params => {
+      if (params['refresh'] === 'true') {
+        this.apiService.getSingleTheme(themeId).subscribe(theme => {
+          this.theme.posts = theme.posts;
+        });
+      }
     });
   }
 

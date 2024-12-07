@@ -14,8 +14,8 @@ export class ApiService {
     return this.http.get<Theme[]>('/api/themes')
   };
 
-  getSingleTheme(id:string){
-    return this.http.get<Theme>(`/api/themes/${id}`)
+  getSingleTheme(themeId:string){
+    return this.http.get<Theme>(`/api/themes/${themeId}`)
   };
 
   createCube(themeName: string, postText: string, colour: string, size: string, rotation: string[]){

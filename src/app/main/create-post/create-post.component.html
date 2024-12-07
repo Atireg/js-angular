@@ -1,6 +1,6 @@
 <main class="create-container">
     <div class="create-box">
-        <h1 class="create-title">Tell us what you think...</h1>
+        <h1 class="create-title">Leave a comment</h1>
 
         <form #form="ngForm" (ngSubmit)="createPost(form)" id="create-cube-form" class="form-label">
             <div class="form-group">
@@ -19,10 +19,13 @@
                     required
                 >
             </div> 
-            <button [disabled]="form.invalid" [style]="{ backgroundColor: form.invalid ? '#51ce9a33' : '#d6ff00' }"
+            <button 
+                [disabled]="form.invalid" [style]="{ backgroundColor: form.invalid ? '#51ce9a33' : '#d6ff00' }"
                 class="create-button">
                 Create Post
             </button>
+            <p>or go back to</p>
+            <button routerLink="/catalog" class="create-button">Catalog</button>
         </form>
     </div>
 </main>

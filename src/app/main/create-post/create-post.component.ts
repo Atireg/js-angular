@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })
@@ -40,8 +40,19 @@ export class CreatePostComponent implements OnInit {
 
     const { postText } = form.value;
     
-    this.apiService.createPost(this.themeId, postText).subscribe(() => {
-      this.router.navigate([`/catalog/${this.themeId}`]);
+    this.apiService.createPost(this.themeId, postText).subscribe({
+      next: () => {
+        // Navigate with a query parameter to trigger a refresh
+        this.router.navigate([`/catalog/${this.themeId}`], { 
+          queryParams: { 
+            refresh: 'true',
+            timestamp: new Date().getTime() 
+          } 
+        });
+      },
+      error: (error) => {
+        console.error('Failed to create post', error);
+      }
     });
   }
 }
