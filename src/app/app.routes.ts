@@ -28,6 +28,11 @@ export const routes: Routes = [
             .then((c) => c.CreateCubeComponent),
         canActivate: [AuthGuard],
     },
+    { path: 'create-post',
+        loadComponent: () => import('./main/create-post/create-post.component')
+            .then((c) => c.CreatePostComponent),
+        canActivate: [AuthGuard],
+    },
     //Error Routing
     { path: 'error', component: ErrorMsgComponent },
     { path: '404', component: PageNotFoundComponent },

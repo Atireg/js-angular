@@ -1,16 +1,16 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import * as THREE from 'three';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
 import { BehaviorSubject, Subscription } from 'rxjs'
-import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
+// import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-cube',
   standalone: true,
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './cube.component.html',
   styleUrl: './cube.component.css'
 })
