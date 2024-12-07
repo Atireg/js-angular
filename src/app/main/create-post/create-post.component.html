@@ -4,9 +4,21 @@
 
         <form #form="ngForm" (ngSubmit)="createPost(form)" id="create-cube-form" class="form-label">
             <div class="form-group">
-                <label for="cube-name" class="form-label">Post:</label>
-                <input type="text" class="form-input">
-            </div>
+                <label for="post" class="form-label">Comment:</label>
+                <input
+                    [class]="(
+                        (inputPost?.touched && inputPost?.errors?.['required'])
+                        ? 'form-input-error' : 'form-input'
+                    )"
+                    type="text"
+                    id="postText"
+                    name="postText"
+                    placeholder="Enter your comment here"
+                    ngModel
+                    #inputPost="ngModel"
+                    required
+                >
+            </div> 
             <button [disabled]="form.invalid" [style]="{ backgroundColor: form.invalid ? '#51ce9a33' : '#d6ff00' }"
                 class="create-button">
                 Create Post

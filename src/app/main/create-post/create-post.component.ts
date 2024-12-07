@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
-import { Theme } from '../../types/theme';
 
 @Component({
   selector: 'app-create-post',
@@ -11,28 +10,38 @@ import { Theme } from '../../types/theme';
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })
-export class CreatePostComponent{
-  theme = {} as Theme;
+export class CreatePostComponent implements OnInit {
+  themeId: string | null = null;
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router){}
+  constructor(
+    private route: ActivatedRoute, 
+    private apiService: ApiService, 
+    private router: Router
+  ) {}
   
-  // ngOnInit(): void {
-  //   const themeId = this.route.snapshot.params['themeId'];
-  //   console.log(themeId);
-  // };
+  ngOnInit(): void {
+      this.route.parent?.params.subscribe(params => {
+        this.themeId = params['themeId'];
+      });
 
-  createPost(form: NgForm){
+  }
+
+  createPost(form: NgForm) {
+    // console.log('Current ThemeId:', this.themeId);
     
-    if (form.invalid){
-      return
+    if (!this.themeId) {
+      console.error('No theme ID found');
+      return;
+    }
+
+    if (form.invalid) {
+      return;
     }
 
     const { postText } = form.value;
-    console.log(postText);
-
-    // this.apiService.createCube(themeId, postText).subscribe(() => {
-    //   this.router.navigate(['/catalog']);
-    // })
+    
+    this.apiService.createPost(this.themeId, postText).subscribe(() => {
+      this.router.navigate([`/catalog/${this.themeId}`]);
+    });
   }
-
 }

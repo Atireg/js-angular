@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 import * as THREE from 'three';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
@@ -10,7 +10,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-cube',
   standalone: true,
-  imports: [DatePipe, RouterLink],
+  imports: [DatePipe, RouterLink, RouterOutlet],
   templateUrl: './cube.component.html',
   styleUrl: './cube.component.css'
 })
@@ -34,7 +34,7 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const themeId = this.route.snapshot.params['themeId'];
-
+    
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
       this.initializeScene(theme.colour, theme.size);
