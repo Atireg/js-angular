@@ -8,7 +8,6 @@ import { CubeComponent } from './main/cube/cube.component';
 import { CubeCatalogComponent } from './main/cube-catalog/cube-catalog.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ErrorMsgComponent } from './core/error-msg/error-msg.component';
-import { CreatePostComponent } from './main/create-post/create-post.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,16 +20,21 @@ export const routes: Routes = [
     {
         path: 'catalog', children: [
             { path: '', component: CubeCatalogComponent },
-            { 
-                path: ':themeId', 
+            {
+                path: ':themeId',
                 component: CubeComponent,
                 children: [
-                    { path: 'create-post', component: CreatePostComponent }
+                    {
+                        path: 'create-post', loadComponent: () => import('./main/create-post/create-post.component')
+                            .then((c) => c.CreatePostComponent),
+                        canActivate: [AuthGuard],
+                    }
                 ]
             },
         ]
     },
-    { path: 'create-cube',
+    {
+        path: 'create-cube',
         loadComponent: () => import('./main/create-cube/create-cube.component')
             .then((c) => c.CreateCubeComponent),
         canActivate: [AuthGuard],

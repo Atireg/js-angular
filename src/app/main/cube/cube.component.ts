@@ -6,6 +6,8 @@ import { Theme } from '../../types/theme';
 import { BehaviorSubject, Subscription } from 'rxjs'
 import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 import { DatePipe } from '@angular/common';
+import { UserService } from '../../user/user.service';
+import { UserForAuth } from '../../types/user';
 
 @Component({
   selector: 'app-cube',
@@ -19,7 +21,8 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
 
-  rotation$ = new BehaviorSubject<number[] | null>(null);
+  loggedUsername!: string;
+
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -27,14 +30,21 @@ export class CubeComponent implements OnInit, OnDestroy {
   private animationId!: number;
   private rotationSubscription!: Subscription;
   isRotating: boolean = true;
+  rotation$ = new BehaviorSubject<number[] | null>(null);
   showTooltip: boolean = true;
   private currentRotation: number[] = [0, 0, 0];
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService) { }
+
+  get isLoggedIn(): boolean{
+    return this.userService.isLogged;
+  };
 
   ngOnInit(): void {
 
     const themeId = this.route.snapshot.params['themeId'];
+
+    this.loggedUsername = this.userService.user!.username;
 
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;

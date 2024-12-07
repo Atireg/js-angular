@@ -11,12 +11,19 @@
         <h2>people's reactions:</h2>
         @for (post of theme.posts; track $index) {
         <div class="post">
-            <p>{{post.userId.username}} wrote {{ post.userId.created_at | elapsedTime}}:</p>
+            @if(post.userId.username === loggedUsername){
+                <p>You wrote {{ post.userId.created_at | elapsedTime}}:</p>
+            }@else {
+                <p>{{post.userId.username}} wrote {{ post.userId.created_at | elapsedTime}}:</p>
+
+            }
             <!-- <p>{{post.userId.username}} wrote on {{ post.userId.created_at | date : 'yyyy-mm-dd hh:mm:ss' }}:</p> -->
             <p class="post-text">"{{post.text}}"</p>
         </div>
         }
+        @if (isLoggedIn) {
         <button class="like-button" [routerLink]="['create-post']">Leave a comment</button>
+        }
         <router-outlet></router-outlet>
     </div>
 </div>

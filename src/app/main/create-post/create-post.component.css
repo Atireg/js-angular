@@ -18,7 +18,7 @@
   
   /* create Box */
   .create-box {
-    background-color: #2222228c;
+    background-color: #292929;
     padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 100%;
@@ -139,7 +139,7 @@
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
-    color: #ff2600;
+    color: #741301;
     background-color: #fa6262;
     border: none;
     border-radius: 5px;
