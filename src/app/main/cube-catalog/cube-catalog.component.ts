@@ -16,7 +16,6 @@ import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 })
 export class CubeCatalogComponent implements OnInit, AfterViewInit {
   @ViewChildren('cubeContainer') cubeContainers!: QueryList<ElementRef>;
-
   cubes: Theme[] = [];
   private animationFrames: Map<string, number> = new Map();
   private scenes: Map<string, { 
@@ -26,6 +25,7 @@ export class CubeCatalogComponent implements OnInit, AfterViewInit {
     cube: THREE.Mesh,
     rotationSpeeds: number[] 
   }> = new Map();
+
   constructor(private apiService: ApiService) { }
 
   // Helper method to get rotation speed from array

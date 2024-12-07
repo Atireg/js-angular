@@ -21,8 +21,6 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
 
-  loggedUsername!: string;
-
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
   private camera!: THREE.PerspectiveCamera;
@@ -41,11 +39,7 @@ export class CubeComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit(): void {
-
     const themeId = this.route.snapshot.params['themeId'];
-
-    this.loggedUsername = this.userService.user!.username;
-
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
       this.initializeScene(theme.colour, theme.size);

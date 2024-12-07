@@ -3,7 +3,6 @@ import { HomeComponent } from './home/home.component';
 import { PageNotFoundComponent } from './404/404.component';
 import { LoginComponent } from './user/login/login.component';
 import { RegisterComponent } from './user/register/register.component';
-import { ProfileComponent } from './user/profile/profile.component';
 import { CubeComponent } from './main/cube/cube.component';
 import { CubeCatalogComponent } from './main/cube-catalog/cube-catalog.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -15,7 +14,11 @@ export const routes: Routes = [
     { path: 'home', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'profile', component: ProfileComponent },
+    {
+        path: 'profile', loadComponent: () => import('./user/profile/profile.component')
+            .then((c) => c.ProfileComponent),
+        canActivate: [AuthGuard],
+    },
     //Catalog Routing
     {
         path: 'catalog', children: [
@@ -29,6 +32,7 @@ export const routes: Routes = [
                             .then((c) => c.CreatePostComponent),
                         canActivate: [AuthGuard],
                     }
+
                 ]
             },
         ]

@@ -1,18 +1,18 @@
 @if(isLoggedIn) {
 <div class="welcome-section">
-  <h1 class="welcome-title">Welcome to The Cube Club</h1>
+  <h1 class="welcome-title">Welcome back, {{profileDetails.username}}!</h1>
   <p class="welcome-text">Discover, share, and explore amazing 3D creations.</p>
 </div>
 } @else {
-<div class="not-logged">
-  <h1>
-    Would you like to
-    <a routerLink="/login" class="nav-link">login</a>
-    or join 
-    <a routerLink="/register" class="nav-link">register</a>
-    the community today    ?
+<div class="welcome-section">
+  <h1 class="welcome-title">Welcome to The Cube Club: Your 3D Creation Playground!</h1>
 
-  </h1>
+  <p class="welcome-text">Unleash your creativity and bring your ideas to life!</p>
+  <p class="welcome-text">Customize your very own animated 3D cubes with</p>
+  <p class="welcome-text">vibrant colors, dynamic sizes, and mesmerizing rotation speeds.</p>
+  <p class="welcome-text">Whether you're here for fun or to craft something unique,</p>
+  <p class="welcome-text">the power to design is in your hands.</p>
+  <p class="welcome-text">Start creating now and watch your imagination take shape in 3D!</p>
 </div>
 
-};
+}

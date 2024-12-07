@@ -7,10 +7,9 @@
     color: #d6ff00;
     z-index: 1;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    
-
+    margin-top: 50px
   }
-  
+
   /* Profile Box */
   .profile-box {
     background-color: #51ce9a6c; /* Slightly lighter background */
