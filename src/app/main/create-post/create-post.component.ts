@@ -55,4 +55,8 @@ export class CreatePostComponent implements OnInit {
       }
     });
   }
+
+  cancelForm() {
+    this.router.navigate([`/catalog/${this.themeId}`]);
+  }
 }

@@ -1,24 +1,31 @@
 /* Login Page Container */
 .create-container {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: calc(100vh - 160px);
-    color: #d6ff00;
-    z-index: 1;
-    margin-top: 50px
-  }
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Change to full viewport height */
+  width: 100vw; /* Add full viewport width */
+  position: fixed; /* Position fixed to ensure it's relative to the viewport */
+  top: 0;
+  left: 0;
+  color: #d6ff00;
+  z-index: 1; /* High z-index to ensure it's on top */
+  margin-top: 0; /* Remove previous margin */
+  padding: 0;
+  overflow: hidden; /* Prevent scrolling */
+}
   
   /* create Box */
   .create-box {
-    background-color: #51ce9a6c;
+    background-color: #2222228c;
     padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     width: 100%;
     max-width: 400px;
     text-align: center;
     z-index: 1;
+    margin: 0 auto;
   }
   
   /* create Title */
@@ -52,7 +59,7 @@
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #2222228c;
+    background-color: #222222;
     color: #d6ff00;
     outline: none;
     transition: box-shadow 0.3s ease;
@@ -106,7 +113,7 @@
     font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #fa62623b;
+    background-color: #fa6262;
     color: #ff2600;
     transition: box-shadow 0.3s ease;
   }
@@ -118,8 +125,22 @@
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
-    color: #002c1a;
+    color: #141414;
     background-color: #d6ff00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .cancel-button {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #ff2600;
+    background-color: #fa6262;
     border: none;
     border-radius: 5px;
     cursor: pointer;

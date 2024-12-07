@@ -20,12 +20,12 @@
                 >
             </div> 
             <button 
-                [disabled]="form.invalid" [style]="{ backgroundColor: form.invalid ? '#51ce9a33' : '#d6ff00' }"
+                [disabled]="form.invalid" [style]="{ backgroundColor: form.invalid ? '#222222' : '#d6ff00' }"
                 class="create-button">
                 Create Post
             </button>
-            <p>or go back to</p>
-            <button routerLink="/catalog" class="create-button">Catalog</button>
+            <p>or</p>
+            <button type="button" (click)="cancelForm()" class="cancel-button">Cancel</button>
         </form>
     </div>
 </main>
