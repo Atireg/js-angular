@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../api.service';
+import { UserService } from '../../user/user.service';
+import { User } from '../../types/user';
 
 @Component({
   selector: 'app-delete-post',
@@ -16,8 +18,8 @@ export class DeletePostComponent {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiService,
-    private router: Router
-    
+    private router: Router,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -29,7 +31,6 @@ export class DeletePostComponent {
       this.themeId = params['themeId'];
     });
 
-    
   }
 
   onDelete() {
@@ -59,7 +60,6 @@ export class DeletePostComponent {
         console.error('Failed to update post', error);
       }
     });
-    
   
   }
 

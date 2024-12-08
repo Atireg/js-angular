@@ -5,19 +5,19 @@ import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
 import { BehaviorSubject, Subscription } from 'rxjs'
 import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
-import { DatePipe } from '@angular/common';
 import { UserService } from '../../user/user.service';
-import { UserForAuth } from '../../types/user';
+import { User, UserForAuth } from '../../types/user';
 
 @Component({
   selector: 'app-cube',
   standalone: true,
-  imports: [DatePipe, RouterLink, RouterOutlet, ElapsedTimePipe],
+  imports: [RouterLink, RouterOutlet, ElapsedTimePipe],
   templateUrl: './cube.component.html',
   styleUrl: './cube.component.css'
 })
 export class CubeComponent implements OnInit, OnDestroy {
   theme = {} as Theme;
+  currentUser: UserForAuth | null = null;
 
   @ViewChild('cube', { static: true }) containerRef!: ElementRef;
 
@@ -43,6 +43,12 @@ export class CubeComponent implements OnInit, OnDestroy {
 
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
+
+      this.currentUser = this.userService.user!;
+      if(this.currentUser){
+          console.log(this.currentUser.username);
+      }
+
       this.initializeScene(theme.colour, theme.size);
       this.rotation$.next(theme.rotation);
       this.setupRotationSubscription();
@@ -56,7 +62,8 @@ export class CubeComponent implements OnInit, OnDestroy {
           this.theme.posts = theme.posts;
         });
       }
-    });
+    }); 
+    
   }
 
   ngOnDestroy(): void {

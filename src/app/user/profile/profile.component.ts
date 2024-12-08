@@ -53,7 +53,6 @@ export class ProfileComponent implements OnInit {
 
   onCancel(event: Event) {
     event.preventDefault();
-    // console.log('onCancel envoked');
     this.toggleEditMode();
   }
 }
