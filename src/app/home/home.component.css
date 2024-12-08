@@ -37,6 +37,13 @@
   transition: all 0.3s ease; 
 }
 
+.cube-animation {
+  width: 220px;
+  height: 220px;
+  border: 1px solid #ccc; /* Add a border to verify canvas visibility */
+  z-index: 2;
+}
+
 /* .cube-info:hover {
   color: rgb(252, 243, 0);
   text-shadow: 0 0 2px rgba(252, 243, 0, 0.5);

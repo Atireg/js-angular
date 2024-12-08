@@ -15,10 +15,12 @@ import { ElapsedTimePipe } from '../shared/pipes/elapsed-time.pipe';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit {
+  
   cubes: Theme[] = [];
   selectedCubes: Theme[] = [];
   latestComments: Post[] = [];
   latestCommentsCount: number = 3;
+  latestCubesCount: number = 3;
 
   get isLoggedIn(): boolean {
     return this.userService.isLogged;
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
       this.cubes = cubes;
 
       const sortedCubes = this.cubes.sort((a, b) => b.posts.length - a.posts.length);
-      this.selectedCubes = sortedCubes.slice(0, 3);
+      this.selectedCubes = sortedCubes.slice(0, this.latestCubesCount);
     });
 
     this.apiService.getLatestPosts(this.latestCommentsCount).subscribe((comments) => {

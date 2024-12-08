@@ -11,13 +11,18 @@
         <h2>Comments:</h2>
         @for (post of theme.posts; track $index) {
         <div class="post" #postContainer>
-            <p>{{post.userId.username}} wrote {{ post.created_at | elapsedTime : 3}}:</p>
-            <p class="post-text">{{post.text}}</p>
-            @if(isLoggedIn && (currentUser?.username === post.userId.username)){
+            <!-- <p>{{post.userId.username}} wrote {{ post.created_at | elapsedTime : 3}}:</p>
+            <p class="post-text">{{post.text}}</p> -->
+            @if(currentUser?.username === post.userId.username){
+                <p>You wrote {{ post.created_at | elapsedTime : 3}}:</p>
+                <p class="post-text">{{post.text}}</p>
                 <button class="edit-button" [routerLink]="['edit-post']" [queryParams]="{postId: post._id}">Edit
                 </button>
                 <button class="delete-button" [routerLink]="['delete-post']" [queryParams]="{postId: post._id}">Delete
                 </button>
+            }@else {
+                <p>{{post.userId.username}} wrote {{ post.created_at | elapsedTime : 3}}:</p>
+                <p class="post-text">{{post.text}}</p>
             }
             
         </div>
