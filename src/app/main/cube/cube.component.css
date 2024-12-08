@@ -28,6 +28,7 @@
 
 .post {
   border: rgb(252, 243, 0);
+  padding: 0.5rem
 }
 
 .post-text {
@@ -35,34 +36,36 @@
   text-indent: 2rem;
 }
 
-.edit-button {
+.post-button {
   padding: 0.5rem;
   font-size: 1rem;
   color: rgba(252, 244, 0, 0.505);
   background-color: #0547078e;
   border: none;
   cursor: pointer;
+  min-width: 100px;
   transition: background-color 0.3s;
   position: relative;
 }
 
-.edit-button:hover {
+.post-button:hover {
   background-color: #45a049;
   color: black;
 }
 
-.like-button {
+.new-post-button {
   padding: 0.5rem;
   font-size: 1rem;
   color: #054707;
   background-color: rgba(252, 244, 0, 0.505);
   border: none;
   cursor: pointer;
+  min-width: 200px;
   transition: background-color 0.3s;
   position: relative;
 }
 
-.like-button:hover {
+.new-post-button:hover {
   color: black;
   background-color: rgb(252, 243, 0);
 }

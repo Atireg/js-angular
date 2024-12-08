@@ -15,7 +15,7 @@ export class ApiService {
     return this.http.get<Theme[]>('/api/themes')
   };
 
-  getSingleTheme(themeId:string){
+  getSingleTheme(themeId: string){
     return this.http.get<Theme>(`/api/themes/${themeId}`)
   };
 
@@ -33,9 +33,8 @@ export class ApiService {
     return this.http.get<Post[]>(`/api/posts?limit=${countPosts}`)
   }
 
-  // updateCube(themeId: string, themeName: string, postText: string, colour: string, size: string, rotation: string[]){
-  //   const payload = { themeName, postText, size, colour, rotation };
-  //   return this.http.put<Theme>(`/api/themes/${themeId}`, payload)
-  // };
+  updatePost(themeId: string, postId: string, postText: string){
+    return this.http.put<Theme>(`/api/themes/${themeId}/posts/${postId}`, postText)
+  }
 
 }

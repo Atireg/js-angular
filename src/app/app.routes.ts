@@ -15,7 +15,8 @@ export const routes: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     {
-        path: 'profile', loadComponent: () => import('./user/profile/profile.component')
+        path: 'profile', loadComponent: () =>
+            import('./user/profile/profile.component')
             .then((c) => c.ProfileComponent),
         canActivate: [AuthGuard],
     },
@@ -28,9 +29,16 @@ export const routes: Routes = [
                 component: CubeComponent,
                 children: [
                     {
-                        path: 'create-post', loadComponent: () => import('./main/create-post/create-post.component')
+                        path: 'create-post', loadComponent: () =>
+                            import('./main/create-post/create-post.component')
                             .then((c) => c.CreatePostComponent),
                         canActivate: [AuthGuard],
+                    },
+                    {
+                        path: 'edit-post', loadComponent: () =>
+                            import('./main/edit-post/edit-post.component')
+                            .then((c) => c.EditCubeComponent),
+                        canActivate: [AuthGuard]
                     }
 
                 ]

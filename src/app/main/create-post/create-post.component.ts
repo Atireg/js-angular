@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../api.service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-post',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule],
   templateUrl: './create-post.component.html',
   styleUrl: './create-post.component.css'
 })
@@ -27,8 +27,6 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPost(form: NgForm) {
-    // console.log('Current ThemeId:', this.themeId);
-    
     if (!this.themeId) {
       console.error('No theme ID found');
       return;

@@ -1,0 +1,31 @@
+<main class="create-container">
+    <div class="create-box">
+        <h1 class="create-title">Edit your comment</h1>
+
+        <form #form="ngForm" (ngSubmit)="editPost(form)" id="create-cube-form" class="form-label">
+            <div class="form-group">
+                <label for="post" class="form-label">Edition:</label>
+                <input
+                    [class]="(
+                        (inputPost?.touched && inputPost?.errors?.['required'])
+                        ? 'form-input-error' : 'form-input'
+                    )"
+                    type="text"
+                    id="postText"
+                    name="postText"
+                    placeholder="Enter your corrections here"
+                    ngModel
+                    #inputPost="ngModel"
+                    required
+                >
+            </div> 
+            <button 
+                [disabled]="form.invalid" [style]="{ backgroundColor: form.invalid ? '#222222' : '#d6ff00' }"
+                class="create-button">
+                Done
+            </button>
+            <p>or</p>
+            <button type="button" (click)="cancelForm()" class="cancel-button">Cancel</button>
+        </form>
+    </div>
+</main>
