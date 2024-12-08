@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../api.service';
-import { FormsModule, NgForm } from '@angular/forms';
 
 @Component({
-  selector: 'app-edit-cube',
+  selector: 'app-delete-post',
   standalone: true,
-  imports: [FormsModule],
-  templateUrl: './edit-post.component.html',
-  styleUrl: './edit-post.component.css'
+  imports: [],
+  templateUrl: './delete-post.component.html',
+  styleUrl: './delete-post.component.css'
 })
-export class EditCubeComponent implements OnInit {
+export class DeletePostComponent {
   themeId: string | null = null;
   postId: string | null = null;
 
@@ -18,6 +17,7 @@ export class EditCubeComponent implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiService,
     private router: Router
+    
   ) { }
 
   ngOnInit(): void {
@@ -28,9 +28,11 @@ export class EditCubeComponent implements OnInit {
     this.route.parent?.params.subscribe(params => {
       this.themeId = params['themeId'];
     });
+
+    
   }
 
-  editPost(form: NgForm) {
+  onDelete() {
     if (!this.themeId) {
       console.error('No theme ID found');
       this.router.navigate([`/catalog`]);
@@ -43,17 +45,7 @@ export class EditCubeComponent implements OnInit {
       return;
     }
 
-    if (form.invalid) {
-      return;
-    }
-
-    const modificationDate = new Date();
-
-    let { postText } = form.value ;
-
-    postText += (`  --> (modified on: ${modificationDate})`);
-    
-    this.apiService.updatePost(this.themeId, this.postId, postText).subscribe({
+    this.apiService.deletePost(this.themeId, this.postId).subscribe({
       next: () => {
         // Navigate with a query parameter to trigger a refresh
         this.router.navigate([`/catalog/${this.themeId}`], {
@@ -67,11 +59,13 @@ export class EditCubeComponent implements OnInit {
         console.error('Failed to update post', error);
       }
     });
+    
+  
   }
 
   cancelForm() {
     this.router.navigate([`/catalog/${this.themeId}`]);
   };
 
-  
+
 }

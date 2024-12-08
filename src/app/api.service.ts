@@ -32,11 +32,15 @@ export class ApiService {
 
   getLatestPosts(countPosts: number){
     return this.http.get<Post[]>(`/api/posts?limit=${countPosts}`)
-  }
+  };
 
   updatePost(themeId: string, postId: string, postText: string){   
-    const payload = { text: postText }
+    const payload = { postText }
     return this.http.put<Theme>(`/api/themes/${themeId}/posts/${postId}`, payload)
-  }
+  };
+
+  deletePost(themeId: string, postId: string){
+    return this.http.delete<Theme>(`/api/themes/${themeId}/posts/${postId}`)
+  };
 
 }

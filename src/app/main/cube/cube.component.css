@@ -36,11 +36,28 @@
   text-indent: 2rem;
 }
 
-.post-button {
+.buttons {
+  /* display: flex; */
+  /* padding: 1rem */
+}
+
+.edit-button {
   padding: 0.5rem;
   font-size: 1rem;
   color: rgba(252, 244, 0, 0.505);
   background-color: #0547078e;
+  border: none;
+  cursor: pointer;
+  min-width: 100px;
+  transition: background-color 0.3s;
+  position: relative;
+}
+
+.delete-button {
+  padding: 0.5rem;
+  font-size: 1rem;
+  color: #741301;
+  background-color: #fa6262;
   border: none;
   cursor: pointer;
   min-width: 100px;

@@ -1,33 +1,31 @@
 <div class="cube-container">
-    
+
     <div #cube (mouseover)="onMouseOver()" (mouseout)="onMouseOut()" [class.hovering]="isRotating" class="cube-area">
-        <div class="tooltip" [class.visible]="!isRotating">MOVE OUTSIDE TO SPIN</div> 
+        <div class="tooltip" [class.visible]="!isRotating">MOVE OUTSIDE TO SPIN</div>
     </div>
 
     <div class="posts-section">
         <!-- <button class="edit-button">Edit</button>
         <button class="like-button">Like</button> -->
-        
+
         <h2>Comments:</h2>
         @for (post of theme.posts; track $index) {
-            <div class="post" #postContainer>
-              <p>{{post.userId.username}} wrote {{ post.created_at | elapsedTime : 3}}:</p>
-              <p class="post-text">"{{post.text}}"</p>
-              <div > 
-                <button 
-                  class="post-button" 
-                  [routerLink]="['edit-post']"
-                  [queryParams]="{postId: post._id}"
-                >Edit</button>
-              </div>
+        <div class="post" #postContainer>
+            <p>{{post.userId.username}} wrote {{ post.created_at | elapsedTime : 3}}:</p>
+            <p class="post-text">{{post.text}}</p>
+            <div class="buttons">
+                <button class="edit-button" [routerLink]="['edit-post']" [queryParams]="{postId: post._id}">Edit
+                </button>
+                <button class="delete-button" [routerLink]="['delete-post']" [queryParams]="{postId: post._id}" >Delete
+                </button>   
             </div>
+        </div>
         }
         @if (isLoggedIn) {
-            <div class="post">
-                <button class="new-post-button" [routerLink]="['create-post']">Leave a comment</button>
-            </div>
+        <div class="post">
+            <button class="new-post-button" [routerLink]="['create-post']">Leave a new comment</button>
+        </div>
         }
         <router-outlet></router-outlet>
     </div>
 </div>
-

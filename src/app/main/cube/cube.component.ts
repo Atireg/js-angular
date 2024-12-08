@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnDestroy, OnInit, ViewChild, HostListener } from '@angular/core';
-import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 import * as THREE from 'three';
 import { ApiService } from '../../api.service';
 import { Theme } from '../../types/theme';
@@ -32,7 +32,7 @@ export class CubeComponent implements OnInit, OnDestroy {
   showTooltip: boolean = true;
   private currentRotation: number[] = [0, 0, 0];
 
-  constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService) { }
+  constructor(private route: ActivatedRoute, private apiService: ApiService, private userService: UserService, private router: Router) { }
 
   get isLoggedIn(): boolean{
     return this.userService.isLogged;
@@ -40,6 +40,7 @@ export class CubeComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     const themeId = this.route.snapshot.params['themeId'];
+
     this.apiService.getSingleTheme(themeId).subscribe(theme => {
       this.theme = theme;
       this.initializeScene(theme.colour, theme.size);

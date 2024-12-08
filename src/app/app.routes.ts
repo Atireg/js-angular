@@ -39,6 +39,12 @@ export const routes: Routes = [
                             import('./main/edit-post/edit-post.component')
                             .then((c) => c.EditCubeComponent),
                         canActivate: [AuthGuard]
+                    },
+                    {
+                        path: 'delete-post', loadComponent: () =>
+                            import('./main/delete-post/delete-post.component')
+                            .then((c) => c.DeletePostComponent),
+                        canActivate: [AuthGuard]
                     }
 
                 ]
