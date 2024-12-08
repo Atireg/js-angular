@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Theme } from './types/theme';
+import { Post } from './types/post';
 
 
 @Injectable({
@@ -27,6 +28,10 @@ export class ApiService {
     const payload = { postText }
     return this.http.post<Theme>(`/api/themes/${themeId}`, payload)
   };
+
+  getLatestPosts(countPosts: number){
+    return this.http.get<Post[]>(`/api/posts?limit=${countPosts}`)
+  }
 
   // updateCube(themeId: string, themeName: string, postText: string, colour: string, size: string, rotation: string[]){
   //   const payload = { themeName, postText, size, colour, rotation };

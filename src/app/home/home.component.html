@@ -1,40 +1,35 @@
 <main class="home-container">
 
-  <app-welcome-msg [isLoggedIn]="isLoggedIn"/>
+  <app-welcome-msg [isLoggedIn]="isLoggedIn" />
 
   @if(isLoggedIn){
-    <div class="featured-section">
-      <h2 class="section-title">Creations with most comments:</h2>
-      <div class="featured-grid">
-        @for (cube of selectedCubes; track $index){
-          <div class="featured-item">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Hexahedron.svg/220px-Hexahedron.svg.png" alt="{{cube.themeName}}" class="featured-image">
-            <p >
-              <a class="cube-button" [routerLink]="['/catalog', cube._id]">{{ cube.themeName }}</a>
-            </p>
-            <p class="update-time">created by {{cube.userId.username}}</p>
-            <p class="update-time">number of comments: {{cube.posts.length}}</p>
-          </div>
-        }
+  <div class="featured-section">
+    <h2 class="section-title">Creations with most comments:</h2>
+    <div class="featured-grid">
+      @for (cube of selectedCubes; track $index){
+      <div class="featured-item">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Hexahedron.svg/220px-Hexahedron.svg.png"
+          alt="{{cube.themeName}}" class="featured-image">
+        <p>
+          <a class="cube-button" [routerLink]="['/catalog', cube._id]">{{ cube.themeName }}</a>
+        </p>
+        <p class="update-time">created by {{cube.userId.username}}</p>
+        <p class="update-time">number of comments: {{cube.posts.length}}</p>
       </div>
+      }
     </div>
-    <div class="updates-section">
-      <h2 class="section-title">Latest Updates:</h2>
-      <div class="updates-feed">
-        <div class="update-item">
-          <p class="update-text"><strong>John Doe</strong> shared a new creation: *Golden Cube*</p>
-          <p class="update-time">2 hours ago</p>
-        </div>
-        <div class="update-item">
-          <p class="update-text"><strong>Jane Smith</strong> commented on your post: *This looks fantastic!*</p>
-          <p class="update-time">5 hours ago</p>
-        </div>
-        <div class="update-item">
-          <p class="update-text"><strong>Cube Club</strong> launched a new contest: *Best 3D Animation*</p>
-          <p class="update-time">1 day ago</p>
-        </div>
+  </div>
+  <div class="updates-section">
+    <h2 class="section-title">Latest {{latestCommentsCount}} comments:</h2>
+    <div class="updates-feed">
+      @for (comment of latestComments; track $index){
+      <div class="update-item">
+        <p class="update-text"><strong>{{comment.userId.username}} wrote: </strong>{{comment.text}}</p>
+        <p class="update-time">{{comment.created_at | elapsedTime : 5 }}</p>
       </div>
+      }
     </div>
+  </div>
   }
 
 </main>
