@@ -7,14 +7,12 @@
     <h2 class="section-title">Creations with most comments:</h2>
     <div class="featured-grid">
       @for (cube of selectedCubes; track $index){
-      <div class="featured-item">
+      <div class="cube-card" [routerLink]="['/catalog', cube._id]">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Hexahedron.svg/220px-Hexahedron.svg.png"
-          alt="{{cube.themeName}}" class="featured-image">
-        <p>
-          <a class="cube-button" [routerLink]="['/catalog', cube._id]">{{ cube.themeName }}</a>
-        </p>
-        <p class="update-time">created by {{cube.userId.username}}</p>
-        <p class="update-time">number of comments: {{cube.posts.length}}</p>
+          alt="{{cube.themeName}}">
+        <p class="section-title" >{{ cube.themeName }}</p>
+        <p class="cube-info">created by {{cube.userId.username}}</p>
+        <p class="cube-info">number of comments: {{cube.posts.length}}</p>
       </div>
       }
     </div>
@@ -23,9 +21,10 @@
     <h2 class="section-title">Latest {{latestCommentsCount}} comments:</h2>
     <div class="updates-feed">
       @for (comment of latestComments; track $index){
-      <div class="update-item">
-        <p class="update-text"><strong>{{comment.userId.username}} wrote: </strong>{{comment.text}}</p>
-        <p class="update-time">{{comment.created_at | elapsedTime : 5 }}</p>
+      <div class="cube-card" [routerLink]="['/catalog', comment.themeId._id]">
+        <p class="section-title">{{comment.userId.username}} wrote:</p> 
+        <p>{{comment.text}}</p>
+        <p class="cube-info">{{comment.created_at | elapsedTime : 3 }}</p>
       </div>
       }
     </div>
