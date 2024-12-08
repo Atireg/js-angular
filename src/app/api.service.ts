@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Theme } from './types/theme';
 import { Post } from './types/post';
+import { timestamp } from 'rxjs';
 
 
 @Injectable({
@@ -33,8 +34,9 @@ export class ApiService {
     return this.http.get<Post[]>(`/api/posts?limit=${countPosts}`)
   }
 
-  updatePost(themeId: string, postId: string, postText: string){
-    return this.http.put<Theme>(`/api/themes/${themeId}/posts/${postId}`, postText)
+  updatePost(themeId: string, postId: string, postText: string){   
+    const payload = { text: postText }
+    return this.http.put<Theme>(`/api/themes/${themeId}/posts/${postId}`, payload)
   }
 
 }
