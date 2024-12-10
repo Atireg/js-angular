@@ -1,6 +1,8 @@
 # THE CUBE CLUB
 
-This Angular-based web application serves as an exam task from SoftUni, focused on practicing Angular development. The project features multiple pages with dynamic content, a catalog view to list all created records, and a details view to display specific record information. Logged-in users can perform CRUD operations on a custom collection, while guest users have access to basic website content. Additionally, the project incorporates the use of Three.js and Rive for animating 2D and 3D content on the web. The idea is simple: through this app, you can create and share your own 3D cube and animate it by selecting its name, color, size, and rotation speeds along the x, y, and z axes. Enjoy!
+This Angular-based web application serves as an exam task from SoftUni, focused on practicing Angular development. The project features multiple pages with dynamic content, a catalog view to list all created records, and a details view to display specific record information. Logged-in users can perform CRUD operations on a custom collection, while guest users have access to basic website content. Additionally, the project incorporates the use of Three.js and Rive for animating 2D and 3D content on the web.
+
+The idea is simple: through this app, you can create and share your own 3D cube and animate it by selecting its name, color, size, and rotation speeds along the x, y, and z axes. You can also interact with other creators by leaving comments. Enjoy!
 
 ## Here is a short video demonstration:
 
