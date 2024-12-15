@@ -1,4 +1,4 @@
-/* Register Page Container */
+
 .register-container {
     display: flex;
     justify-content: center;
@@ -8,7 +8,6 @@
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
   
-  /* Register Box */
   .register-box {
     background-color: #51ce9a6c; 
     padding: 30px;
@@ -19,7 +18,6 @@
     z-index: 1;
   }
   
-  /* Register Title */
   .register-title {
     font-size: 28px;
     font-weight: bold;
@@ -27,7 +25,6 @@
     color: #d6ff00;
   }
   
-  /* Form Group Styling */
   .form-group {
     margin-bottom: 20px;
     text-align: left;
@@ -66,7 +63,6 @@
     transition: box-shadow 0.3s ease;
   }
 
-
   .form-error {
     color: #ff2600;
     font-weight: bold;
@@ -76,7 +72,6 @@
     box-shadow: 0 0 5px #d6ff00;
   }
   
-  /* Register Button */
   .register-button {
     box-sizing: border-box;
     width: 100%;
@@ -92,10 +87,10 @@
   }
   
   .register-button:hover {
-    background-color: #b3cc00; /* Darker yellow */
+    background-color: #b3cc00;
   }
   
-  /* Footer Message */
+
   .register-footer {
     margin-top: 20px;
     font-size: 14px;
@@ -109,6 +104,6 @@
   }
   
   .register-link:hover {
-    color: #002c1a; /* White on hover */
+    color: #002c1a;
   }
   
