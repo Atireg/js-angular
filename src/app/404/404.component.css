@@ -1,5 +1,4 @@
 
-  /* Main Error Container Styling */
   .error-container {
     text-align: center;
     margin-top: 100px;
@@ -32,6 +31,6 @@
   }
   
   .error-link:hover {
-    background-color: #b3cc00; /* Darker yellow on hover */
+    background-color: #b3cc00;
   }
   

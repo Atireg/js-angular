@@ -1,44 +1,40 @@
-  /* Welcome Section */
-  .welcome-section {
-    text-align: center;
-    margin-bottom: 40px;
-  }
-  
-  .welcome-title {
-    font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #d6ff00;
-  }
-  
-  .welcome-text {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #d6ff00;
-  }
+ .welcome-section {
+   text-align: center;
+   margin-bottom: 40px;
+ }
 
-  .login-footer {
-    margin-top: 20px;
-    font-size: 14px;
-    color: #292929;
-  }
+ .welcome-title {
+   font-size: 36px;
+   font-weight: bold;
+   margin-bottom: 10px;
+   color: #d6ff00;
+ }
 
-  .login-link {
-    color: #d6ff00;
-    text-decoration: underline;
-    transition: color 0.3s ease;
-    z-index: 100;
-  }
-  
-  .login-link:hover {
-    color: #002c1a;
-    cursor: pointer;
-  }
+ .welcome-text {
+   font-size: 18px;
+   line-height: 1.6;
+   color: #d6ff00;
+ }
 
-  .cube-animation {
-    width: 500px;
-    
-    z-index: 2;
-  }
+ .login-footer {
+   margin-top: 20px;
+   font-size: 14px;
+   color: #292929;
+ }
 
-  
+ .login-link {
+   color: #d6ff00;
+   text-decoration: underline;
+   transition: color 0.3s ease;
+   z-index: 100;
+ }
+
+ .login-link:hover {
+   color: #002c1a;
+   cursor: pointer;
+ }
+
+ .cube-animation {
+   width: 500px;
+   z-index: 2;
+ }
