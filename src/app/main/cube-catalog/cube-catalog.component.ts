@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';  // Add this import
 import { Theme } from '../../types/theme';
 import * as THREE from 'three'
 import { ApiService } from '../../api.service';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { SlicePipe } from '../../shared/pipes/slice.pipe';
 import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 

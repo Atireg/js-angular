@@ -16,7 +16,6 @@ export class CreateCubeComponent {
   constructor(private apiService: ApiService, private router: Router){}
 
   createCube(form: NgForm ){
-    // console.log(form.invalid);
     if (form.invalid){
       return
     }

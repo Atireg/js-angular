@@ -17,7 +17,6 @@ export class LoginComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   login(form: NgForm){
-    // console.log(form.invalid);
     if(form.invalid){
       console.error('Invalid Login Form')
       return;
@@ -27,10 +26,5 @@ export class LoginComponent {
     this.userService.login(email, password).subscribe(() =>{
       this.router.navigate(['/home'])
     })
-    
-
-    // this.userService.login();
-    // this.router.navigate(['/home'])
-    
   }
 }

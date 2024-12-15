@@ -6,7 +6,7 @@ import { Theme } from '../../types/theme';
 import { BehaviorSubject, Subscription } from 'rxjs'
 import { ElapsedTimePipe } from '../../shared/pipes/elapsed-time.pipe';
 import { UserService } from '../../user/user.service';
-import { User, UserForAuth } from '../../types/user';
+import { UserForAuth } from '../../types/user';
 
 @Component({
   selector: 'app-cube',

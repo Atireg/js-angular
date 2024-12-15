@@ -55,11 +55,9 @@ export class EditCubeComponent implements OnInit {
     
     this.apiService.updatePost(this.themeId, this.postId, postText).subscribe({
       next: () => {
-        // Navigate with a query parameter to trigger a refresh
         this.router.navigate([`/catalog/${this.themeId}`], {
           queryParams: {
             refresh: 'true',
-            // timestamp: new Date().getTime()
           }
         });
       },

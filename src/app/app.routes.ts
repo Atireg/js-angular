@@ -20,7 +20,7 @@ export const routes: Routes = [
             .then((c) => c.ProfileComponent),
         canActivate: [AuthGuard],
     },
-    //Catalog Routing
+    //Catalog & Details Routing
     {
         path: 'catalog', children: [
             { path: '', component: CubeCatalogComponent },

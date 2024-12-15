@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Theme } from './types/theme';
 import { Post } from './types/post';
-import { timestamp } from 'rxjs';
 
 
 @Injectable({
